@@ -1,0 +1,73 @@
+
+\subsection{DMRG wavefunction and optimization algorithm}
+
+DMRG is an optimization algorithm for a matrix product state(MPS) wave function. In practice, two types of MPS are often used in DMRG calculations: an one-sit and a two-site MPS. 
+
+The one-site MPS is defined as
+
+\begin{equation}
+  \ket{\Psi}= \sum_{\substack{n_1, n_2\cdot\cdot\cdot n_p\cdot\cdot\cdot n_k}} {\bf A}^{n_1}{\bf A}^{n_2}\cdot\cdot\cdot {\bf A}^{n_{p}} \cdot\cdot\cdot{\bf A}^{n_k}
+\end{equation}
+
+with $k$ is the number of orbitals.
+
+And the two-site MPS is defined as
+
+\begin{equation}
+  \ket{\Psi}= \sum_{\substack{n_1, n_2\cdot\cdot\cdot n_p\cdot\cdot\cdot n_k}} {\bf A}^{n_1}{\bf A}^{n_2}\cdot\cdot\cdot {\bf A}^{n_{p},n_{p+1}} \cdot\cdot\cdot{\bf A}^{n_k}
+\end{equation}
+
+In DMRG sweep algorithm, $\bra{\Psi}\hat{H}\ket{\Psi}$ is variational optimized. And only a single tensor ($A^{n_i}$ or $A^{n_i, n_{i+1}}$ for a two-site MPS) in the MPS is updated during the sweep at site $i$. It can be considered as solving eigenvalue problem of an effective Hamiltonian, which is a $4M^2\times 4M^2$ matrix. This effective Hamiltonian is usually defined through complimentary operators $^{a citation} $. The cost scaling is $O(k^2M^3)$ for this eighenvalue problem for one tensor and is $O(k^3M^3)$ for a whole sweep optimization. 
+
+Compared to an one-site MPS, a two-site MPS has more variational freedom and is able to change quantum numbers during the sweep. It helps avoid local minimum. However, the two-site MPS has N-representation problem: the converged two-site MPS is still different at different position of sweep. Based on a two-site MPS, expectation values, for example reduced density matrix, which often used to characterize a state and is essential for dynamic correlation calculations, have no unique results. 
+Therefore, the strategy, ``two-site to one-site'' (a two-site MPS optimization followed by an one-site one), is widely used. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%A mixed canonical form of MPS at site $p$ is 
+%
+%\begin{eqnarray}
+%    \ket{\Psi_{MPS}}=&& \sum_{\substack{n_1\cdot\cdot\cdot n_p\cdot\cdot\cdot n_k\\l_1\cdot\cdot\cdot l_{p-1},r_p\cdot\cdot\cdot r_{k-1} }} L^{n_1}_{l_1}\cdot\cdot\cdot L^{n_{p-1}}_{l_{p-2},l_{p-1}} C^{n_p}_{l_{p-1},r_p}\nonumber\\
+%&&  R^{n_{p+1}}_{r_p,r_{p+1}}\cdot\cdot\cdot R^{n_k}_{r_{k-1}}
+%\times\ket{n_1\cdot\cdot\cdot n_p \cdot\cdot\cdot n_k}
+%\end{eqnarray}
+%
+%$L^{n_i}_{l_{i-1},l_i}$ is for the sites on the left of p and $R^{n_i}_{r_{i-1},r_i}$ is for the sites on the right of $p$. $n_i$ is one of four single site states \{$\ket{0},\ket{\uparrow},\ket{\downarrow},\ket{\uparrow\downarrow}$\}. (In spin-adapted dmrg code, block, (citation here) only three states are necessary.). The dimension of bond index $l_i$ or $r_i$ (M) is the number of kept renormalized states. MPS is more accurate with a higher M. L and R site functions are canonical by following definition,
+%
+%\begin{equation}
+%\sum_{n_q,l_{q-1}} L^{n_q}_{l_{q-1},l_q} L^{n_q}_{l_{q-1},l'_q} = \delta_{l_q,l'_q}
+%\end{equation}
+%
+%\begin{equation}
+%\sum_{n_q,l_q} R^{n_q}_{r_{q-1},r_q} R^{n_q}_{r'_{q-1},l_q} = \delta_{r_{q-1},r'_{q-1}}
+%\end{equation}
+%
+%Combine L site functions and occupation number basis for the left block, which is formed by the sites on the left of p, we get
+%
+%\begin{eqnarray}
+%\ket{l_{p-1}} = &&\sum_{\substack{n_1,n_2,..n_{p-1}\\l_1,l2,...,l_{p-2}}} L^{n_1}_{l_1}L^{n_2}_{l_1,l_2}\cdot\cdot\cdot L^{n_{p-1}}_{l_{p-2},l_{p-1}}\nonumber\\
+%&&\times \ket{n_1,n_2,..,n_{p-1}}
+%\end{eqnarray}
+%\begin{eqnarray}
+%\ket{r_{p}} = &&\sum_{\substack{n_{p+1},..n_{k-1},n_k\\r_{p+1},...,r_{k-2},r_{k-1}}} R^{n_{p}}_{r_{p},r_{p+1}}\cdot\cdot\cdot R^{n_{k-1}}_{r_{k-2},r_{k-1}}R^{n_k}_{r_k} \nonumber\\
+%&&\times \ket{n_{p+1},...,n_{k-1},n_k}
+%\end{eqnarray}
+%
+%With the renormalized basis definied above, wavefunction at site $p$ is
+%
+%\begin{equation}
+%\ket{\Psi} = \sum_{n_p,l_{p-1},r_p} C^{n_p}_{l_{p-1},r_p} \ket{l_{p-1},n_p,r_p}
+%\end{equation}

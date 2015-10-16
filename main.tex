@@ -1,0 +1,73 @@
+\documentclass[
+ aip,
+ jmp,
+ amsmath,
+ amssymb,
+ 12pt, reprint, %onecolumn
+]{revtex4-1}
+
+\usepackage{braket}
+\usepackage{graphicx}
+\usepackage{dcolumn}
+\usepackage{bm}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{amsmath}
+\usepackage{epsfig}
+\usepackage{appendix}
+\usepackage{color}
+\usepackage{natbib}
+\usepackage{makeidx}
+\usepackage{booktabs}
+%\bibliographystyle{unsrt}
+%\def\etal{\mbox{et al.}}
+
+\begin{document}
+
+\title{N-electron valence state perturbation theory based on density matrix renormalization group reference functions, with applications to chromium dimer and photovoltaic polymers}
+\author{Sheng Guo}
+\affiliation{Department of Chemistry, Princeton University, Princeton, New Jersey 08544, USA}
+
+\begin{abstract}
+We describe a general algorithm to compute high order particle density matrices 
+from the density matrix renormalization group(DMRG) method. The algorithm is implemented 
+as the N-PDM module in our quantum chemistry DMRG program BLOCK\cite{sharma_spin-adapted_2012}.
+%% can it be generalized to any order of pdm?
+We further show the utilization of high order 
+density matrices in the $n$-electron valence state perturbation theory(NEVPT2), 
+and applications on chromium dimer potential energy curve and on excited state properties of photovoltaic polymer poly(p-phenylene vinylene).
+
+%\begin{keywords}
+%DMRG; dynamic correlation; chromium dimer, PPV
+%\end{keywords}\bigskip
+\end{abstract}
+
+\date{\today}
+
+\maketitle
+
+\input{introduction}
+
+%\section{methodology}
+\input{theory/perturbation}
+
+\input{theory/dmrg_theory}
+
+\input{theory/particle_density_matrices}
+
+%\section{Applications}
+\input{application/chromium_dimer}
+
+\input{application/ppv}
+
+\input{conclusion}
+
+\input{acknowledgement}
+
+\bibliography{nevpt.bib}{}
+\bibliographystyle{plain}
+
+
+\end{document}

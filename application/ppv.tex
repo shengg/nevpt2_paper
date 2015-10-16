@@ -1,0 +1,57 @@
+\section{Poly(p-phenylene vinylene)}
+
+Poly(p-phenylene vinylene) is a type of phenyl-based light emitting conjugated polymers, which is useful for displays and photovoltaic devices. It has many low-lying states that participate in the photophysics and it was extensively investigated through theoretical methods, sush as DMRG based on Pariser\textendash Parr\textendash Pople (PPP) model \cite{shukla_correlated_2002}\cite{bursill_symmetry-adapted_2009} and semi-empirical intermediate neglect of differential overlap (INDO) Hamiltonian with configuration interaction \cite{beljonne_theoretical_1995}. 
+However, ab initio correlated wave function calculations were not often reported, because of the difficulty to include static and dynamic correlation together for a complex system.
+We used PPV-3 as an example and demonstrated how to predict the excitation energies for low-lying state through DMRG-NEVPT2 calculation and the accuracy of DMRG-NEVPT2 for conjugated polymer molecule.
+
+In our calculations, we employed an active space of (22e, 22o) from the conjugated $\pi$ orbitals. For the ground state S$_{0}$, we obtained the initial equilibrium geometry of PPV-3 via DMRG-CI geometry optimization, starting from a guess from DFT/B3LYP optimized geometry. The geometry optimization was first run at M = 1000, and then near the convergence at M = 2000. Canonical orbitals are used in the geometry optimization.
+%For the first optically bright state, we also started from the DFT guess ground state geometry.
+
+Then state-averaged calculations were performed for $^1A_g$ (2 states) and $B_u$ symmetry (3 states), with canonical orbitals of the ground state. 
+To identify excited states, we computed the transition 1-RDM and transition 2-RDM from the ground state, and identified the state according to a dominant excitation signature.
+Based on the chosen active space, $3^1B_u$ is identified as the first optically bright state, with a HOMO$\rightarrow$ LUMO excitation signature. And $2^2A_g$ in state-average calculation with 2 staets ($3^2A_g$ when more states were averaged) is the first dark state, with a HOMO-1$\rightarrow$ LUMO + HOMO$\rightarrow$ LUMO+1 and HOMO,HOMO$\rightarrow$ LUMO,LUMO excitation signature.
+Due to lack of dynamic correlation ($\sigma-\pi$ interaction), the energy order of excited states is significantly different with experimental results or calculations with PPP model.
+
+After including dynamic correlation through DMRG-NEVPT2, the energy first bright state was much lowered and it became the first excited state ($1^1B_u$). 
+This is similar to low-lying excited states of polyenes, where dynamic correlations lower the ionic excited state ($1^1B_u$) relative to covalent excited state ($2^1A_g$)
+However, the energy order did not converge with the bond dimension in the calculation (Table~\ref{table:canonical}).
+
+
+\begin{table}
+   \caption{Excitation energy (eV) calculated from DMRG-NEVPT2 with canonical orbitals. States are labeled according to energies with M= 750. }
+  \label{table:canonical}
+\begin{tabular}{ccccc}
+\hline
+\toprule
+  state & M=250 & M=500 & M=750 & DMRG-CI(M=750)\\
+ \midrule
+  $2^1A_g$ & 4.742 &  4.669  &   4.657   &   4.991 \\
+  $1^1B_u$ & 4.027 &  4.191  &   4.180   &   5.269 \\
+  $2^1B_u$ & 4.449 &  4.486  &   4.264   &   4.740 \\
+  $3^1B_u$ & 5.090 &  4.328  &   4.600   &   5.132 \\
+   \bottomrule
+\end{tabular}
+\end{table}
+
+Localized orbitals usually give a better convergence for DMRG calculation.\cite{olivares-amaya_ab-initio_2015} Therefore, further DMRG-NEVPT2 calculations were carried out based on split-localized orbitals (localize the occupied and unoccupied $\pi$ orbitals separately with Pipek-Mezey method\cite{pipek_fast_1989}). 
+The NEVPT2 energies were calculated for lowest 6 states (based on DMRG-CI energy). The excitation energies were converged into less than $0.6 meV$with bond dimension (Table~\ref{table:local}). They were accurate enough to determine the energy order of low-lying excite states. 
+The difference between calculated excitation energies from canonical orbital and those from local orbitals was big, and it might not be the same even when bond dimension is infinite. One reason is that the molecular geometry was optimized without symmetry restriction. Some integral terms, which should be zero according symmetry, were not exact zero. When local orbital orbitals were used, the symmetry restriction on the integral was removed. 
+
+\begin{table}
+   \caption{Excitation energy (eV) calculated from DMRG-NEVPT2 with localized orbitals. States are labeled according to excitation signatures and energies with M= 750. }
+  \label{table:local}
+\begin{tabular}{ccccc}
+  \toprule
+  state &  M=500 & M=750 & DMRG-CI(M=750)\\
+ \midrule
+  $1^1B_u$ & 3.8628   &   3.8625   & 5.1312    \\
+  $2^1B_u$ & 4.4980   &   4.4978   & 4.4953    \\
+  $2^1A_g$ & 4.6634   &   4.6634   & 4.8456    \\
+  $3^1B_u$ & 4.8268   &   4.8262   & 4.7542    \\
+  $4^1B_u$ & 4.8441   &   4.8443   & 4.7572    \\
+   \bottomrule
+\end{tabular}
+\end{table}
+
+The excitation energy of first bright state (3.86eV) agrees well with results from other theoretical studies (3.88eV \cite{beljonne_theoretical_1995}, 3.91eV\cite{shukla_correlated_2002}). 
+However, it deviated from the experimental value (3.5eV\cite{woo_optical_1993},3.43eV\cite{gelinck_measuring_2000}) a lot. The reasons were that PPV oligomer was substituted with tertiary butyl end-group to become soluble in the experiment and that the solvent was not considered in the calculations.

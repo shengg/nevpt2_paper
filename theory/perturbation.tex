@@ -1,0 +1,110 @@
+\subsection{N-electron valance state perturbation theory} 
+
+In this section, we briefly review the strongly contracted NEVPT2, a second-order multireference perturbation theory. The target zero-order wave function is defined as 
+
+\begin{equation}
+P_{CAS}HP_{CAS} \ket{\Psi^{(0)}_m} = E^{(0)}_m \ket{\Psi^{(0)}_m}
+\end{equation}
+
+with $P_{CAS} = \sum_{I\in S}\ket{I}\bra{I}$ is the projector onto the CAS space. 
+
+The zero order Hamiltonian is chosen in the form give by Dyall:
+\begin{equation}
+  H^D = H_i + H_v + C
+\end{equation}
+
+where $H_i$ is a one-electron (diagonal) operator in non-active subspace:
+
+\begin{equation}
+  H_i = \sum_{i,\sigma}^{core} \epsilon_i \hat{a}^\dagger_{i,\sigma}\hat{a}_{i,\sigma} + \sum_{r,\sigma}^{virt} \epsilon_r \hat{a}^\dagger_{r,\sigma}\hat{a}_{r,\sigma}
+\end{equation}
+
+where $\epsilon_i $ and $\epsilon_r$ are orbital energies.
+
+$H_v$ is a two-electron operator confined to the active space:
+
+\begin{equation}
+  H_v = \sum_{ab,\sigma}^{act} h^{eff}_{ab} \hat{a}^\dagger_{a,\sigma} \hat{a}_{b,\sigma} + \sum_{abcd,\sigma_1,\eta}^{act} \braket{ab|cd} \hat{a}^\dagger_{a,\sigma}\hat{a}^\dagger_{b,\eta}\hat{a}_{d,\eta}\hat{a}_{c,\sigma}
+\end{equation}
+where $h_{ab}^{eff} = h_{ab} + \sum_{i}^{core} (2\braket{ai|bi}-\braket{ai|ib})$
+
+and $C$ is a constant to ensure that $H^D$ is equivalent to the full Hamiltonian within the CAS space.
+
+The zero order wave functions external to the CAS space, referred to as the ``perturbers'', belong to CAS-CI spaces with well defined patterns of the inactive (core+virtual) orbitals and with a given number of active electrons. The perturber functions are written  as $\ket{\Psi^{(k)}_{l,\mu}}$ and the corresponding CAS-CI spaces as $S_l^{(k)}$, where $k$ is the number of electrons promoted to ($k>0$) or removed from ($k<0$) the active space, $l$ denotes the pattern of inactive orbitals and $\mu$ numerates the various perturbers. 
+
+In stongly contracted NEVPT2, utilizes just one function from each $S_l^{(k)}$ subspace, $\ket{\Psi^{(k)}_l} = S^{(k)}_l H \ket{\Psi^{(0)}_m}$ with energy given by
+
+\begin{equation}
+  E^{(k)}_l = \frac{\bra{\Psi^{(k)}_l}H^D\ket{\Psi^{(k)}_l}}{\braket{\Psi^{(k)}_l|\Psi^{(k)}_l}}
+\end{equation}
+
+And the zero order Hamiltonian becomes
+
+\begin{equation}
+  H_0 = \ket{\Psi^{(k)'}_l}E^{(k)}_l \bra{\Psi^{(k)'}_l} +\ket{\Psi^{(0)}_m}E^{(0)}_m \bra{\Psi^{(0)}_m}
+\end{equation}
+where $\ket{\Psi^{(k)'}_l}$ is normalized $\ket{\Psi^{(k)}_l}$
+
+
+The bottle neck is the evaluation of energies of perturbers, where up to forth order RDM is needed. 4-RDM is contracted with double electron integral in active space to form auxiliary matrices. In our implementation for DMRG-NEVPT2, 4-RDM is computed on the fly, avoiding storing huge 4-RDM.
+
+%FIXME
+%interface between Block and other software.
+
+Like Kurashige and Yanai's implementation of DMRG-CASPT2\cite{kurashige_second-order_2011}, these auxiliary matrices can be computed with a scaling same with that of 3-RDM by make special types of operators, which are the contraction of integral and creation (and annihilation) operators. However, the two-electron Hamiltonian in NEVPT2 is much more complex that the Fork operators (which is diagonal if canonical orbitals used) in CASPT2. Many types of contracted operators would be needed in DMRG frame. It is the very hard to implement and the prefactor is big, even though the scaling is better. Therefore, We only contracted integral and operators in CASCI-NEVPT2, not in DMRG-NEVPT2.
+
+
+
+%The zero-order wave function different from the $\ket{\Psi^{(0)}_M}$ are referred as the ``perturber functions'', and belong to CAS-CI spaces with different occupation patterns of the non-active (core + virtual) orbitals. The wave function and the space are denoted as $\ket{\Psi^{k}_l}$ and $S_l^{k}$, with $k$ stands for the number of electron promoted to ( or from) active space ( $-2\le k \le 2$), and $l$ describes the occupation pattern in inactive orbitals. 
+%
+%\begin{equation}
+%S^k_l = \ket{\Phi_l^{-k}} \{ \ket{\Psi^k_I} \}
+%\end{equation}
+%
+%where $\Phi_l^{-k}$ is non-active part and $\{ \ket{\Psi^k_I} \} $ is formed by valence determinant with $n_v +k $ electron in active space. 
+%
+%Perturber functions can be solved by digonalization of $ P_{S_l^k} H P_{S_l^k}$. Or
+%the coefficient $\ket{\Phi_l^{-k}\Psi_I^k}$ in the first-order correction to the wave function can be obtained by solving the system of linear equations. 
+%
+%Above approach is called ``totally uncontracted'', because the full dimensionality of $S_l^k$ is exploited. It is very expensive. 
+%
+%If only the first-order interaction subspace is used for each $S_l^k$. It is called ``partially contracted''.
+%In a more drastic simplification, ``strongly contracted'', a one-dimensional contracted subspace of $S_l^k$. 
+%\begin{equation}
+%  \ket{\Psi_l^k} = P_{S_l^k} H \ket{\Psi_m^{(0)}} \equiv V_l^k \ket{\Psi_m^{(0)}}
+%\end{equation}
+%
+%is defined.
+%
+%The relation between different approaches was analyzed by Angeli.  
+%
+%In this paper, analysis and calculations are based for ``strongly contracted'' NEVPT (SC-NEVPT). 
+%%In this paper, analysis and calculations are based for "strongly contracted" NEVPT, even though the bottle neck of "strongly contracted" and "partially contracted" NEVPT are the same. 
+%
+%In SC-NEVPT, bottle neck is to calculate ``energy'' of perturber functions:
+%\begin{equation}
+%  E_l^{k(0)} = \frac{\bra{\Psi_l^k}H_0\ket{\Psi_l^k}}{\braket{\Psi_l^k|\Psi_l^k}}  = \frac{\bra{\Psi_l^k}H_0\ket{\Psi_l^k}}{N_l^k}
+%\end{equation}
+%
+%With Dyall's approximation to the electronic Hamiltonian, the active part and the inactive part of the wavefunction are indepedent.
+%
+%\begin{equation}
+%  \begin{split}
+%  {N_l^k}E_l^{k(0)} &= \bra{\Psi_l^k}H^D_0\ket{\Psi_l^k} \\
+%  &= \bra{\Psi_l^k}H^D_i\ket{\Psi_l^k} + \bra{\Psi_l^k}H^D_v\ket{\Psi_l^k}  \\
+%  &= \Delta \epsilon_l^k + \bra{\Psi_m^{(0)}}V_l^{k\dagger}H^D_vV_l^k\ket{\Psi_m^{(0)}} \\
+%  &= \Delta \epsilon_l^k + N_l^kE^{(0)}_m + \bra{\Psi_m^{(0)}}V_l^{k\dagger}[H^D_v, V_l^k]\ket{\Psi_m^{(0)}}
+%  \end{split}
+%\end{equation}
+%
+%$\Delta \epsilon_l^k$ comes from the orbital energies of electrons in virtual space and holes in core space. $H^D_v$ is the effective two-electron Hamiltionian in active space. $\bra{\Psi_m^{(0)}}V_l^{k\dagger}[H^D_v, V_l^k]\ket{\Psi_m^{(0)}}$ can be calculated from the contraction between the ``excitation integral'' and auxiliary matrices (a citation), which is the contraction of RDM (up the fourth order) and one-electron and two-electron Hamiltonian in active space. The 4-RDM could be calculated on the fly to avoid storaging them.
+%
+%Like Kurashige and Yanai's implementation of DMRG-CASPT2, these auxiliary matrices can be computed with a scaling same with that of 3-RDM by make special types of operators, which are the contraction of integral and creation (and annihilation) operators. However, the two-electron Hamiltonian is much more complex that the Fork operators (which is diagonal if canonical orbitals used) in CASPT2. Many types of contracted operators would be needed in DMRG frame. It is the very hard to implement and the prefactor is big even though the scaling is better. Therefore, We only contracted integral and operators in our NEVPT2 for ci type reference functions not for DMRG wave function.
+
+%, such as
+%
+%\begin{equation}
+%\bra{\Psi_m^{(0)}}(a^\dagger_i a_ja_k)^\dagger [H_0,a^\dagger_l a_m a_n]\ket{\Psi_m^{(0)}}
+%\end{equation}
+% with all subscript indexes are orbital in active space. 
+% 

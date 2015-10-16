@@ -1,0 +1,184 @@
+\begin{thebibliography}{10}
+
+\bibitem{andersson_cr2_1994}
+K.~Andersson, B.~O. Roos, P.~Å. Malmqvist, and P.~O. Widmark.
+\newblock The {Cr}2 potential energy curve studied with multiconfigurational
+  second-order perturbation theory.
+\newblock {\em Chemical Physics Letters}, 230(4–5):391--397, December 1994.
+
+\bibitem{angeli_third-order_2006}
+Celestino Angeli, Benoît Bories, Alex Cavallini, and Renzo Cimiraglia.
+\newblock Third-order multireference perturbation theory: {The} n-electron
+  valence state perturbation-theory approach.
+\newblock {\em The Journal of Chemical Physics}, 124(5):054108, February 2006.
+
+\bibitem{angeli_n-electron_2001}
+Celestino Angeli, Renzo Cimiraglia, and Jean-Paul Malrieu.
+\newblock N-electron valence state perturbation theory: a fast implementation
+  of the strongly contracted variant.
+\newblock {\em Chemical Physics Letters}, 350(3–4):297--305, December 2001.
+
+\bibitem{beljonne_theoretical_1995}
+D.~Beljonne, Z.~Shuai, R.~H. Friend, and J.~L. Brédas.
+\newblock Theoretical investigation of the lowest singlet and triplet states in
+  poly(paraphenylene vinylene)oligomers.
+\newblock {\em The Journal of Chemical Physics}, 102(5):2042--2049, February
+  1995.
+
+\bibitem{bursill_symmetry-adapted_2009}
+Robert~J. Bursill and William Barford.
+\newblock Symmetry-adapted density matrix renormalization group calculations of
+  the primary excited states of poly(para-phenylene vinylene).
+\newblock {\em The Journal of Chemical Physics}, 130(23):234302, June 2009.
+
+\bibitem{celani_cipt2_2004}
+P.~Celani, H.~Stoll, H.-J. Werner, and P.~J.~Knowles *.
+\newblock The {CIPT}2 method: {Coupling} of multi-reference configuration
+  interaction and multi-reference perturbation theory. {Application} to the
+  chromium dimer.
+\newblock {\em Molecular Physics}, 102(21-22):2369--2379, November 2004.
+
+\bibitem{chan_highly_2002}
+Garnet Kin-Lic Chan and Martin Head-Gordon.
+\newblock Highly correlated calculations with a polynomial cost algorithm: {A}
+  study of the density matrix renormalization group.
+\newblock {\em The Journal of Chemical Physics}, 116(11):4462--4476, March
+  2002.
+
+\bibitem{gelinck_measuring_2000}
+Gerwin~H. Gelinck, Jacob~J. Piet, Bas~R. Wegewijs, Klaus Müllen, Jurjen
+  Wildeman, Georges Hadziioannou, and John~M. Warman.
+\newblock Measuring the size of excitons on isolated phenylene-vinylene chains:
+  {From} dimers to polymers.
+\newblock {\em Physical Review B}, 62(3):1489--1491, July 2000.
+
+\bibitem{ghosh_orbital_2008}
+Debashree Ghosh, Johannes Hachmann, Takeshi Yanai, and Garnet Kin-Lic Chan.
+\newblock Orbital optimization in the density matrix renormalization group,
+  with applications to polyenes and β-carotene.
+\newblock {\em The Journal of Chemical Physics}, 128(14):144117, April 2008.
+
+\bibitem{kurashige_second-order_2011}
+Yuki Kurashige and Takeshi Yanai.
+\newblock Second-order perturbation theory with a density matrix
+  renormalization group self-consistent field reference function: {Theory} and
+  application to the study of chromium dimer.
+\newblock {\em The Journal of Chemical Physics}, 135(9):094104, September 2011.
+
+\bibitem{muller_large-scale_2009}
+Thomas Müller.
+\newblock Large-{Scale} {Parallel} {Uncontracted} {Multireference}-{Averaged}
+  {Quadratic} {Coupled} {Cluster}: {The} {Ground} {State} of the {Chromium}
+  {Dimer} {Revisited}†.
+\newblock {\em The Journal of Physical Chemistry A}, 113(45):12729--12740,
+  November 2009.
+
+\bibitem{neuscamman_review_2010}
+Eric Neuscamman, Takeshi Yanai, and Garnet Kin-Lic Chan.
+\newblock A review of canonical transformation theory.
+\newblock {\em International Reviews in Physical Chemistry}, 29(2):231--271,
+  April 2010.
+
+\bibitem{olivares-amaya_ab-initio_2015}
+Roberto Olivares-Amaya, Weifeng Hu, Naoki Nakatani, Sandeep Sharma, Jun Yang,
+  and Garnet Kin-Lic Chan.
+\newblock The ab-initio density matrix renormalization group in practice.
+\newblock {\em The Journal of Chemical Physics}, 142(3):034102, January 2015.
+
+\bibitem{pipek_fast_1989}
+János Pipek and Paul~G. Mezey.
+\newblock A fast intrinsic localization procedure applicable for abinitio and
+  semiempirical linear combination of atomic orbital wave functions.
+\newblock {\em The Journal of Chemical Physics}, 90(9):4916--4926, May 1989.
+
+\bibitem{roos_ground_2003}
+Björn~O. Roos.
+\newblock The {Ground} {State} {Potential} for the {Chromium} {Dimer}
+  {Revisited}.
+\newblock {\em Collection of Czechoslovak Chemical Communications},
+  68(2):265--274, 2003.
+
+\bibitem{roos_multiconfigurational_1995}
+Björn~O. Roos and Kerstin Andersson.
+\newblock Multiconfigurational perturbation theory with level shift — the
+  {Cr}2 potential revisited.
+\newblock {\em Chemical Physics Letters}, 245(2–3):215--223, October 1995.
+
+\bibitem{roos_multiconfigurational_1996}
+Björn~O Roos, Kerstin Andersson, Markus~P Fülscher, Per-âke Malmqvist, Luis
+  Serrano-Andrés, Kristin Pierloot, and Manuela Merchán.
+\newblock Multiconfigurational {Perturbation} {Theory}: {Applications} in
+  {Electronic} {Spectroscopy}.
+\newblock In I.~Prigogine and Stuart~A. Rice, editors, {\em Advances in
+  {Chemical} {Physics}}, pages 219--331. John Wiley \& Sons, Inc., 1996.
+
+\bibitem{ruiperez_complete_2011}
+Fernando Ruipérez, Francesco Aquilante, Jesus~M. Ugalde, and Ivan Infante.
+\newblock Complete vs {Restricted} {Active} {Space} {Perturbation} {Theory}
+  {Calculation} of the {Cr}2 {Potential} {Energy} {Surface}.
+\newblock {\em Journal of Chemical Theory and Computation}, 7(6):1640--1646,
+  June 2011.
+
+\bibitem{sharma_multireference_2015}
+Sandeep Sharma and Ali Alavi.
+\newblock Multireference linearized coupled cluster theory for strongly
+  correlated systems using matrix product states.
+\newblock {\em The Journal of Chemical Physics}, 143(10):102815, September
+  2015.
+
+\bibitem{sharma_spin-adapted_2012}
+Sandeep Sharma and Garnet Kin-Lic Chan.
+\newblock Spin-adapted density matrix renormalization group algorithms for
+  quantum chemistry.
+\newblock {\em The Journal of Chemical Physics}, 136(12):124121, March 2012.
+
+\bibitem{sharma_communication:_2014}
+Sandeep Sharma and Garnet Kin-Lic Chan.
+\newblock Communication: {A} flexible multi-reference perturbation theory by
+  minimizing the {Hylleraas} functional with matrix product states.
+\newblock {\em The Journal of Chemical Physics}, 141(11):111101, September
+  2014.
+
+\bibitem{sharma_low-energy_2014}
+Sandeep Sharma, Kantharuban Sivalingam, Frank Neese, and Garnet Kin-Lic Chan.
+\newblock Low-energy spectrum of iron–sulfur clusters directly from
+  many-particle quantum mechanics.
+\newblock {\em Nature Chemistry}, 6(10):927--933, October 2014.
+
+\bibitem{shukla_correlated_2002}
+Alok Shukla.
+\newblock Correlated theory of triplet photoinduced absorption in
+  phenylene-vinylene chains.
+\newblock {\em Physical Review B}, 65(12):125204, March 2002.
+
+\bibitem{white_density_1992}
+Steven~R. White.
+\newblock Density matrix formulation for quantum renormalization groups.
+\newblock {\em Physical Review Letters}, 69(19):2863--2866, November 1992.
+
+\bibitem{white_density-matrix_1993}
+Steven~R. White.
+\newblock Density-matrix algorithms for quantum renormalization groups.
+\newblock {\em Physical Review B}, 48(14):10345--10356, October 1993.
+
+\bibitem{woo_optical_1993}
+H.~S. Woo, O.~Lhost, S.~C. Graham, D.~D.~C. Bradley, R.~H. Friend,
+  C.~Quattrocchi, J.~L. Brédas, R.~Schenk, and K.~Müllen.
+\newblock Optical spectra and excitations in phenylene vinylene oligomers.
+\newblock {\em Synthetic Metals}, 59(1):13--28, June 1993.
+
+\bibitem{yang_ab_2014}
+Jun Yang, Weifeng Hu, Denis Usvyat, Devin Matthews, Martin Schütz, and Garnet
+  Kin-Lic Chan.
+\newblock Ab initio determination of the crystalline benzene lattice energy to
+  sub-kilojoule/mole accuracy.
+\newblock {\em Science}, 345(6197):640--643, August 2014.
+
+\bibitem{zgid_density_2008}
+Dominika Zgid and Marcel Nooijen.
+\newblock The density matrix renormalization group self-consistent field
+  method: {Orbital} optimization with the density matrix renormalization group
+  method in the active space.
+\newblock {\em The Journal of Chemical Physics}, 128(14):144116, April 2008.
+
+\end{thebibliography}
