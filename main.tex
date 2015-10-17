@@ -29,13 +29,9 @@
 \affiliation{Department of Chemistry, Princeton University, Princeton, New Jersey 08544, USA}
 
 \begin{abstract}
-We describe a general algorithm to compute high order particle density matrices 
-from the density matrix renormalization group(DMRG) method. The algorithm is implemented 
-as the N-PDM module in our quantum chemistry DMRG program BLOCK\cite{sharma_spin-adapted_2012}.
-%% can it be generalized to any order of pdm?
-We further show the utilization of high order 
-density matrices in the $n$-electron valence state perturbation theory(NEVPT2), 
-and applications on chromium dimer potential energy curve and on excited state properties of photovoltaic polymer poly(p-phenylene vinylene).
+
+The second order n-electron valence state perturbation theory (NEVPT2) is a relatively cheap way to deal dynamic correlation without intruder state problem or level shift, while density matrix renormalization group (DMRG) is able to deal static correlation with a large active space and to provide reference wave functions needed in multireference perturbation theories.
+We present a method to combine DMRG and NEVPT2 (DMRG-NEVPT2) through the a general algorithm to compute high order reduced density matrices for DMRG wave function. The capacity of DMRG-NEVPT is demonstrated for calcualtions of chromium dimer potential energy curve and excited states energy of poly(p-phenylene vinylene).
 
 %\begin{keywords}
 %DMRG; dynamic correlation; chromium dimer, PPV
