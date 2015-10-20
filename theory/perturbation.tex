@@ -1,6 +1,6 @@
 \subsection{N-electron valance state perturbation theory} 
 
-In this section, we briefly review the strongly contracted NEVPT2, a second-order multireference perturbation theory. The target zero-order wave function is defined as 
+In this section, we briefly review the strongly contracted NEVPT2\cite{angeli_n-electron_2001, angeli_n-electron_2002}, a second-order multireference perturbation theory. The target zero-order wave function is defined as 
 
 \begin{equation}
 P_{CAS}HP_{CAS} \ket{\Psi^{(0)}_m} = E^{(0)}_m \ket{\Psi^{(0)}_m}
@@ -8,7 +8,7 @@ P_{CAS}HP_{CAS} \ket{\Psi^{(0)}_m} = E^{(0)}_m \ket{\Psi^{(0)}_m}
 
 with $P_{CAS} = \sum_{I\in S}\ket{I}\bra{I}$ is the projector onto the CAS space. 
 
-The zero order Hamiltonian is chosen in the form give by Dyall:
+The zero order Hamiltonian is chosen in the form give by Dyall\cite{dyall_choice_1995}:
 \begin{equation}
   H^D = H_i + H_v + C
 \end{equation}
@@ -46,12 +46,12 @@ And the zero order Hamiltonian becomes
 where $\ket{\Psi^{(k)'}_l}$ is normalized $\ket{\Psi^{(k)}_l}$
 
 
-The bottle neck is the evaluation of energies of perturbers, where up to forth order RDM is needed. 4-RDM is contracted with double electron integral in active space to form auxiliary matrices. In our implementation for DMRG-NEVPT2, 4-RDM is computed on the fly, avoiding storing huge 4-RDM.
+The bottle neck is the evaluation of energies of perturbers, where up to forth order RDM is needed. 4-RDM is contracted with double electron integral in active space to form auxiliary matrices. \cite{ angeli_n-electron_2002} In our implementation for DMRG-NEVPT2, 4-RDM is computed on the fly, avoiding storing huge 4-RDM.
 
 %FIXME
 %interface between Block and other software.
 
-Like Kurashige and Yanai's implementation of DMRG-CASPT2\cite{kurashige_second-order_2011}, these auxiliary matrices can be computed with a scaling same with that of 3-RDM by make special types of operators, which are the contraction of integral and creation (and annihilation) operators. However, the two-electron Hamiltonian in NEVPT2 is much more complex that the Fork operators (which is diagonal if canonical orbitals used) in CASPT2. Many types of contracted operators would be needed in DMRG frame. It is the very hard to implement and the prefactor is big, even though the scaling is better. Therefore, We only contracted integral and operators in CASCI-NEVPT2, not in DMRG-NEVPT2.
+Like Kurashige and Yanai's implementation of DMRG-CASPT2\cite{kurashige_second-order_2011}, these auxiliary matrices can be computed with a scaling similar with that of 3-RDM by make special types of operators, which are the contraction of integral and creation (and annihilation) operators. However, the two-electron Hamiltonian in NEVPT2 is much more complex that the Fork operators (which is diagonal if canonical orbitals used) in CASPT2. Many types of contracted operators would be needed in DMRG frame. It is the very hard to implement and the prefactor is big, even though the scaling is better. Therefore, We only contracted integral and operators in CASCI-NEVPT2, not in DMRG-NEVPT2.
 
 
 
