@@ -1,5 +1,4 @@
-\section{Apppendix}
-\subsection{Edge cases for number patterns in RDM}
+\section*{Apppendix A: Edge cases for number patterns in RDM}
 All number patterns in N-RDM, \{$n_\mathcal{S}$,$n_\mathcal{D}$,$n_\mathcal{E}$\}, need to be computed if 
 \begin{align}
 0\le n_\mathcal{S} \le N \\
@@ -26,7 +25,7 @@ n_\mathcal{S} +n_\mathcal{D} +n_\mathcal{E} =2N \\
 
 Because $\mathcal{S}$ (or $\mathcal{E}$) is composed of single site, expectation value of an operator with more than two $\hat{a}$ or two $\hat{a}^\dagger$ on it is zero. The number of indices on single sites should not be more than 4.
 
-\subsection{Restriction on type patterns in RDM}
+\section*{Apppendix B: Restriction on type patterns in RDM}
 It is a waste of resource to compute RDM element which is zero or redundant. And the RDM element can be computed through multiple types of combinations of operators in different blocks. We implemented some restrictions to skip calculations for zero and redundant RDM elements.
 
 The operators $\hat{a}_i$ and $\hat{a}^\dagger_j$ are permutated to make their orbitals indices not decrease. Only the permutation between two operators with different orbital indices are needed.
@@ -38,14 +37,20 @@ And the RDM ( not transition RDM) is symmetry matrix. Use 3-RDM as example
 %  \bra{\Psi}\hat{a}_i^\dagger\hat{a}_j^\dagger\hat{a}_k\hat{a}_l\ket{\Psi} = \bra{\Psi}\hat{a}_l^\dagger\hat{a}_k^\dagger\hat{a}_j\hat{a}_i\ket{\Psi}^* = \bra{\Psi}\hat{a}_l^\dagger\hat{a}_k^\dagger\hat{a}_j\hat{a}_i\ket{\Psi} = \bra{\Psi}(\hat{a}_i^\dagger\hat{a}_j^\dagger\hat{a}_k\hat{a}_l)^\dagger\ket{\Psi}
 %\end{equation}
 \begin{equation}
-  \bra{\Psi}\hat{a}_i^\dagger\hat{a}_j^\dagger\hat{a}^\dagger_k\hat{a}_l\hat{a}_m\hat{a}_n\ket{\Psi}  = \bra{\Psi}(\hat{a}_i^\dagger\hat{a}_j^\dagger\hat{a}^\dagger_k\hat{a}_l\hat{a}_m\hat{a}_n)^\dagger\ket{\Psi} = \bra{\Psi}\hat{a}_n^\dagger\hat{a}_m^\dagger\hat{a}_l^\dagger\hat{a}_k\hat{a}_j\hat{a}_i\ket{\Psi}
+  \langle \hat{a}_i^\dagger\hat{a}_j^\dagger\hat{a}^\dagger_k\hat{a}_l\hat{a}_m\hat{a}_n\rangle = \langle(\hat{a}_i^\dagger\hat{a}_j^\dagger\hat{a}^\dagger_k\hat{a}_l\hat{a}_m\hat{a}_n)^\dagger\rangle
+  = \langle \hat{a}_n^\dagger\hat{a}_m^\dagger\hat{a}_l^\dagger\hat{a}_k\hat{a}_j\hat{a}_i\rangle
 \end{equation}
 We can always use transpose and permutation to make operators begin with $\hat{a}^\dagger$ rather than $\hat{a}$ (the beginning is the operator with smallest orbital indice). Therefore, all types pattern begin with $\hat{a}$ is omitted. 
 
 Similarly, if operators begin with $\hat{a}^\dagger_i\hat{a}_i$, $\hat{a}^\dagger_i\hat{a}_i\hat{a}^\dagger_j\hat{a}_j$ or $\hat{a}^\dagger_i\hat{a}_i\hat{a}^\dagger_j\hat{a}_j\hat{a}^\dagger_k\hat{a}_k$, the remaining part of operators also has transpose and permutation symmetry.
 
 \begin{equation}
-  (\hat{a}^\dagger_i\hat{a}_i \hat{o}_j \hat{o}_k\dots)^\dagger = (\hat{o}_j \hat{o}_k\dots)^\dagger(\hat{a}^\dagger_i\hat{a}_i)^\dagger = \hat{a}^\dagger_i\hat{a}_i(\hat{o}_j \hat{o}_k\dots)^\dagger
+\begin{aligned}
+  &\langle\hat{a}^\dagger_i\hat{a}_i(\hat{o}_j \hat{o}_k\dots)\rangle \\
+  = &\langle(\hat{a}^\dagger_i\hat{a}_i (\hat{o}_j \hat{o}_k\dots))^\dagger\rangle \\
+  = &\langle(\hat{o}_j \hat{o}_k\dots)^\dagger(\hat{a}^\dagger_i\hat{a}_i)^\dagger\rangle \\
+  = &\langle\hat{a}^\dagger_i\hat{a}_i(\hat{o}_j \hat{o}_k\dots)^\dagger\rangle
+\end{aligned}
 \end{equation}
 where $i < j\le k\dots$
 
