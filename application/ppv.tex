@@ -4,7 +4,7 @@ Poly(p-phenylene vinylene) is a type of phenyl-based light emitting conjugated p
 However, ab initio correlated wave function calculations were not often reported, because of the difficulty to include static and dynamic correlation together for a complex system.
 We used PPV-3 as an example and demonstrated how to predict the excitation energies for low-lying state through DMRG-NEVPT2 calculation and the accuracy of DMRG-NEVPT2 for conjugated polymer molecule.
 
-In our calculations, we employed an active space of (22e, 22o) from the conjugated $\pi$ orbitals. For the ground state S$_{0}$, we obtained the initial equilibrium geometry of PPV-3 via DMRG-CI geometry optimization, starting from a guess from DFT/B3LYP optimized geometry. The geometry optimization was first run at M = 1000, and then near the convergence at M = 2000. Canonical orbitals are used in the geometry optimization.
+The cc-pVDZ basis was used for the calcualtions and an active space was chosen from 22 conjugated $\pi$ orbitals. For the ground state S$_{0}$, we obtained the initial equilibrium geometry of PPV-3 via DMRG-CI geometry optimization with an interface between Block and orca\cite{neese_orca_2012}, starting from a guess from DFT/B3LYP optimized geometry. The geometry optimization was first run at M = 1000, and then near the convergence at M = 2000. Canonical orbitals are used in the geometry optimization.
 %For the first optically bright state, we also started from the DFT guess ground state geometry.
 
 Then state-averaged calculations were performed for $^1A_g$ (2 states) and $B_u$ symmetry (3 states), with canonical orbitals of the ground state. 

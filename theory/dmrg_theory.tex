@@ -3,7 +3,7 @@
 
 As with other approximate wavefunction methods in quantum chemistry, DMRG is based on an approximate wvefunction ansatz. It is the matrix product state(MPS).
 A MPS is a non-linear wavefunction, built from contraction of tensors for each orbital in the basis. Limited by the dimension of tensors, called bond dimension, $M$, MPS could only explore a small subspace of Hilbert space. By increasing $M$, the MPS ansatz will give full configuration interaction (FCI) results. DMRG is a combination of renormalization and truncation algorithms to find a variational and optimal MPS. 
-In practice, two types of MPS are often used in DMRG calculations: an one-site and a two-site MPS. 
+In practice, two types of MPS are often used in DMRG calculations: one-site and two-site MPS. 
 
 The one-site MPS is defined as
 
@@ -21,10 +21,11 @@ Similarly, the two-site MPS is defined as
   \ket{\Psi}= \sum_{\substack{n_1, n_2\cdot\cdot\cdot n_p\cdot\cdot\cdot n_k}} {\bf A}^{n_1}{\bf A}^{n_2}\cdot\cdot\cdot {\bf A}^{n_{p},n_{p+1}} \cdot\cdot\cdot{\bf A}^{n_k}
 \end{equation}
 
-In DMRG sweep algorithm, $\bra{\Psi}\hat{H}\ket{\Psi}$ is variational optimized. And only a single tensor ($A^{n_i}$ or $A^{n_i, n_{i+1}}$ for a two-site MPS) in the MPS is updated during the sweep at site $i$. It can be considered as solving eigenvalue problem of an effective Hamiltonian, which is a $4M^2\times 4M^2$ matrix. This effective Hamiltonian is usually defined through complimentary operators $^{a citation} $. The cost scaling is $O(k^2M^3)$ for this eighenvalue problem for one tensor and is $O(k^3M^3)$ for a whole sweep optimization. 
+In DMRG sweep algorithm, $\bra{\Psi}\hat{H}\ket{\Psi}$ is variational optimized. And only a single tensor ($A^{n_i}$ for an one-site MPS or $A^{n_i, n_{i+1}}$ for a two-site MPS) in the MPS is updated during the sweep at site $i$. It can be considered as solving eigenvalue problem of an effective Hamiltonian, which is a $4M^2\times 4M^2$ matrix. 
+The multiplication between this effective Hamiltonian and a MPS is usually computed from $O(k^2)$ operators built on different subspaces of active orbitals spaces. The cost scaling is $O(k^2M^3)$ for this eighenvalue problem for one tensor and is $O(k^3M^3)$ for a whole sweep optimization. 
 
 Compared to an one-site MPS, a two-site MPS has more variational freedom and is able to change quantum numbers during the sweep. It helps avoid local minimum. However, the two-site MPS has N-representation problem: the converged two-site MPS is still different at different position of sweep. Based on a two-site MPS, expectation values, for example reduced density matrix, which often used to characterize a state and is essential for dynamic correlation calculations, have no unique results. 
-Therefore, the strategy, ``two-site to one-site'' (a two-site MPS optimization followed by an one-site one), is widely used. 
+Therefore, the strategy, ``two-site to one-site'' (a two-site MPS optimization followed by an one-site one), is widely used\cite{olivares-amaya_ab-initio_2015}. 
 
 
 
