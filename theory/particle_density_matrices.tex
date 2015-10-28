@@ -1,8 +1,9 @@
 \subsection{Reduced density matrix (RDM)}
 
+High order RDM is used for varied of post-CASSCF methods, such as multireference configuration interaction\cite{buenker_individualized_1974} and multireference perturbation theory\cite{andersson_second-order_1990, angeli_n-electron_2002}, to include dynamic correlatons. For example, multireference perturbation theories, like CASPT2\cite{andersson_second-order_1990} and NEVPT2\cite{angeli_n-electron_2002} (The details are in next subsection.), need up to fourth order RDM. 
+Because in DMRG the orbital spaces are partitioned into several blocks, efficient RDM evaluation is not straight forward. The algorithms to build 2-RDm were proposed by several groups.\cite{ghosh_orbital_2008,zgid_obtaining_2008} However, they are not feasible for higher order RDM, due to numerous ``cases'' of partition and types of operators. Here we introduce a general algorithm to generate a loop for every ``case'' and to skip redundant computations automatically.
 
-From now on, when we refer MPS, it means an one-site MPS, because it is needed in reduced density matrix and dynamic correlation calculations.
-%Our focus is how to calculate dynamic correlations based on a DMRG wavefunction ( an one-site MPS), rather than how to get this wavefunction. 
+From now on, when we refer a MPS, it means an one-site MPS, because it is needed in evaluation of RDM.
 
 The 2-RDM is defined in this way
 
@@ -42,7 +43,10 @@ And nearly every ``type pattern'' could be combined with all ``number patterns''
 With above process, the types of operators needed on $\mathcal{S}$, $\mathcal{D}$, and $\mathcal{E}$ are determined for each pattern ( ``type pattern'' and ``number pattern''). Loop the orbital labels of operators, we can build all operators we need. There are about $O(N^k)$ operators, most of which are on $\mathcal{S}$.
   The computation for generate these operators are $O(k^NM^3)$ for one step at the sweep and are $O(k^{N+1}M^3)$ in total.   
 
-
+\begin{figure}\label{fig:operator_split}
+  \includegraphics[width=8cm]{operator_split.eps}
+  \caption{Evaluation of a three RDM element $\gamma_{1,3,7;1,5,9}$. $\hat{a}_1^\dagger\hat{a}_1\hat{a}^\dagger_3$ is on $\mathcal{S}$, $\hat{a}_5$ is on $\mathcal{D}$, and $\hat{a}^\dagger_7\hat{a}^\dagger_9$ is on $\mathcal{E}$. It belongs to (3,1,2) ``number pattern'' and ($\hat{a}^\dagger\hat{a}\hat{a}^\dagger\hat{a}\hat{a}^\dagger\hat{a}$) ``type pattern''.}
+\end{figure}
 
   After building operators on each block, $\hat{O}^S$, $\hat{O}^D$, $\hat{O}^E$, combine $\hat{O}^S$ and $\hat{O}^D$ into $O^L$, a big left block $\mathcal{S}\otimes \mathcal{D}$. (Combining $\mathcal{E}$ and $\mathcal{D}$ only for RDM calcualtions is also feasible.) The $\mathcal{E}$ is the right block.
   RDM element $\gamma = \sum_{l,r}\sum_{l',r'} c_{l,r} O^{L}_{l,l'} O^R_{r,r'}c_{l',r'}$ , with $\ket{\Psi} = c_{l,r}\ket{l}\ket{r}$, can be computed in two step. (1) $X_{r,r'} = \sum_{l}\sum_{l'} c_{l,r} O^{l,l'} c_{l',r'}$. (2) $\gamma = \sum_{r,r'} X_{r,r'} O^R_{r,r'}$.

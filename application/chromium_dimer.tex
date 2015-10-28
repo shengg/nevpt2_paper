@@ -1,4 +1,4 @@
-\section{Chromium dimer}
+\subsection{Chromium dimer}
 
 Chromium dimmer has been a challenging problem in quantum chemistry, because large active space is needed to simulate its potential energy curve correct. At the same time, dynamic correlation is also required for a qualitative potential energy curve. \cite{andersson_cr2_1994,roos_multiconfigurational_1995,roos_multiconfigurational_1996,roos_ground_2003,angeli_third-order_2006,muller_large-scale_2009,kurashige_second-order_2011,sharma_multireference_2015}
 %Perturbation theory is relatively cheap among methods for dynamic correlation, such as multi-reference couple cluster, multi-reference configuration interaction. It is widely used in the chromium dimmer calculations. 
@@ -10,54 +10,44 @@ DMRG-NEVPT2 is free of intruder state and there is no need add ``level shift'' t
 
 \begin{figure}\label{fig:12o_nevpt2}
   \includegraphics[width=8cm,height=6cm]{application/12o-nevpt2.eps}
-  \caption{NEVPT2(12e,12o) potential energy curve with a suite cc-pvxz basis set (x=t,q,5)}
-  {\footnotesize The Energy is relative to the isolated atoms. }
+  \caption{NEVPT2(12e,12o) potential energy curve with a suite cc-pwcVXZ (X=T,Q,5) basis set}
 \end{figure}
 
-A suite of cc-pvxz (x = t,q,5) basis sets was used in our calculations. No basis set superposition error (BSSE) corrections were applied in the calculations because the BSSE was regarded as small for the large basis sets including h or i-type functions. Isolated atoms were used as energy reference, which was consistent with extremely long ($30\mbox{\AA}$) dimer.
+A suite of cc-pwcVXZ (X = T,Q,5) basis sets was used in our calculations. No basis set superposition error (BSSE) corrections were applied in the calculations because the BSSE was regarded as small for the large basis sets including h or i-type functions. The X2C Hamiltonian was used to include scalar relativistic effects. 
+The energy of isolated atoms was set as zero.
 %The symmetry of an isolated atom was set as $C_{\infty v}$, while the dimer's symmetry is set as $D_{\infty h}$. Otherwise, the isolated atom's CAS(6e,9o) will be not consistent with the CAS for the dimer.
 
-For the NEVPT2(12e,12o) potential energy curve of Cr$_2$ in \ref{fig:12o_nevpt2}, larger basis set gives a deeper and, sometimes, worse, curve. It is agree with previous studies with atomic natural orbital (ANO) basis sets.
-%Our DMRG-NEVPT2 calculations used the cc-pvxz (x = t,q,5) basis sets. 
-Then the (12e,12o) CAS was extended by adding \{$\sigma_g,\sigma_u,\pi_g,\pi_u,\pi'_g,\pi'_u$\} orbitals, dominant compoents of which are $4p$ and $4d$ orbitals (after orbital optimization, mainly $4d$ orbitals), forming a (12e,18o) CAS. Due to exponential computation of FCI, DMRG becomes neccesary.
-Before DMRG-NEVPT2 calculation, orbitals were optmized with DMRG-SCF with $M=1000$, through Pyscf and Block. There was no frozen core in the orbital optimization. Then reference MPS was optimized with M=4000 and was then compressed into a MPS with M=1000 through ``reverse schedule'', with the optimized CAS. To check whether $M$ is big enough, the potential energy curve with ccpv5z basis was also calculated with M=1500. The difference between curving with M=1000 and that with M=1500 is ignorable.
+For the NEVPT2(12e,12o) potential energy curve of Cr$_2$ in \ref{fig:12o_nevpt2}, larger basis set gives a deeper and worse curve. It agreed with previous studies with atomic natural orbital (ANO) basis sets.\cite{angeli_third-order_2006}
+Then the (12e,12o) CAS was extended by adding another set of $\sigma$, $\pi$, $\pi'$, $\delta$, $\delta'$ orbitals and their corresponding anti bond orbitals from external orbitals, forming a CAS(12e,22o). 
+DMRG are neccesary here to avoid exponentially increasing computations of FCI.
+These additional active orbitals were chosen based on the symmetry and orbital energies; thus their dominant compoents were are from $4p$ and $4d$ orbitals at first. After DMRG-CASSCF orbital optimization ($M=1000$ and there is no frozen core), only $4d$ orbitals component remained. Actually, a 3d double-shell was included in active space, which is reported to greatly increase results of transition metal \cite{andersson_excitation_1992}.
+After DMRG-CASSCF orbital optimization, the reference MPS was optimized with $M=4000$. Then the MPS was compressed into a MPS with $M=800$ through ``reverse schedule'', before doing DMRG-NEVPT2 calcualations. To check whether $M=800$ is big enough, the DMRG-NEVPT2 energies with cc-pwcV5Z basis for geometry points near minimum were also calculated with $M=1200$. The difference between curving with $M=800$ and that with $M=1200$ is very small. Finally, the (TZ/QZ/5Z) results were extrapolated to the complete basis set (CBS) limit in exponential formula for DMRG-CASSCF energy and in $l^{-3}$ formula for DMRG-NEVPT2 correction energy.
 
-
-\begin{figure}
-  %\includegraphics[width=8cm,height=6cm]{application/M1000-1500.eps}
-\includegraphics[width=8cm,height=6cm]{application/M1000-1500.eps}
-  \caption{DMRG-NEVPT2(12e,18o) results with different bond dimension}
-
-\end{figure}
 
 \begin{figure}\label{fig:5qt_fitting}
   \includegraphics[width=8cm,height=6cm]{application/5qt-fitting.eps}
-  \caption{DMRG-NEVPT2(12e,18o) potential energy curve with a suite cc-pvxz basis set (x=t,q,5) and CBS limit}
-  %\caption{NEVPT2(12e,12o) and DMRG-NEVPT2(12e,18o) potential energy curve with a suite cc-pvxz basis set (x=t,q,5) and CBS limit}
+  \caption{DMRG-NEVPT2(12e,22o)(M=800) potential energy curve with a suite of cc-pwcVXZ (X=T,Q,5) basis set and the complete basis set (CBS) limit. The experimental curve is taken from Ref.~\onlinecite{casey_negative_1993}DMRG-CASCPT2(12e,28o) curve is from Ref.~\onlinecite{kurashige_second-order_2011} and the MR-AQCC(12e,12o) is from Ref.~\onlinecite{muller_large-scale_2009}.}
 \end{figure}
 
-Figure \ref{fig:5qt_fitting} shows the potential energy curve with a suite of cc-pvxz (x=t,q,5) basis set and complete basis set (CBS) limit. A larger basis set still gives a deeper and better (not like CAS(12e,12o) result) curve. 
+Figure \ref{fig:5qt_fitting} shows the potential energy curve with a suite of cc-pwcVXZ (X=T,Q,5) basis set and the complete basis set (CBS) limit. A larger basis set gives a deeper and better curve. The CBS limit potential energy curve agreed with the experimental well, with the exception of the strong bend at about 2.8\AA, where the reliability of the RKR potential in this region has alreadybeen questioned before.\cite{roos_ground_2003}
+
+DMRG-NEVPT2(12e,22o) results were nearly the same with DMRG-CASPT2(12e,28o)\cite{kurashige_second-order_2011} results for the $3d$ bond region. However, for the $4s$ bond (``shoulder'') region, the DMRG-NEVPT2(12e,22o) results were closer to the exerimental one, even though their CAS did not include $4p$ orbitals while DMRG-CASPT2 did. 
+It is reasobalbe. Because, in the $4s$ bond region, the correlation is strong, because the $d$ orbitals are not well bonded and nearly degenerate. The Fock operator, monoelectron zero order Hamiltonian in CASPT2, is not good enough. 
+The comparision between DMRG-NEVPT2(12e,22o) and DMRG-CASPT2(12e,28o) also indicates, together with the fact that only $4d$ orbitals remained in the active space after orbital optimization, $4d$ orbitals are more important than $4p$ orbitals for the static correlation and the reference function.
 
 %The calcualted $D_e$ is 1.491eV, very close to the experimental value 1.47eV \cite{casey_negative_1993}. However, the calculated bond length is shorter than experimental value. 
 
 \begin{table}
+\caption{Spectroscopic Constants for the ground state of Cr$_2$ from different methods}
   \begin{tabular}{cccc}
-  \toprule
+  \hline
       & $D_e(eV)$ & $R_0($\AA$)$ & $\omega_e$ \\
-  \midrule
-    ccpv-$x$z CAS(12e,18o) & 1.491 & 1.632 & 415 \\ 
-  \midrule
-  experiment & 1.47(5) & 1.679 & 480.6(5) \\
-  \bottomrule
+  \hline
+  DMRG-NEVPT2(12e,22o) & 1.436 & 1.656 & 476 \\ 
+  DMRG-CASPT2(12e,28o)\footnote{DMRG-CASPT2(12e,28o)/{\bf $g_1$}($M=\infty$) in Ref.~\onlinecite{kurashige_second-order_2011}} & 1.61 & 1.681 & 480 \\
+  MR-AQCC(12e,12o)\footnote{Ref.~\onlinecite{muller_large-scale_2009}} & 1.355 & 1.685 & 459 \\
+  experiment\footnote{Ref.~\onlinecite{casey_negative_1993}} & 1.47(5) & 1.679 & 480.6(5) \\
+  \hline
   \end{tabular}
 \end{table}
 
-
-%FIXME
-Need logical reasons here.
-In the calculation discribed above, the relativistic effect was not included. And cc-pv$x$z basis set might not be able to describe core-valence correlation well.
-The calculated potential energy curve was already quantitatively correct, compared to expermiental one. However, there is definitely not enough evindence to say that relativeistic effect is not important or that cc-pv$x$z basis is enough for core-valence correaltions.
-%FIXME
-We used cc-pwcv$x$z-dk basis set and x2c Hamiltonian to get better accuracy.
-
-At the same time, the $4d$ orbital were not fully included in the active space, only $d_{z^2}$,$d_{xz}$,$d_{yz}$. $\delta$ bonds formed by $d_{xy}$ and $d_{x^2-y^2}$ were not included, because their orbital energies in mean-field and CASSCF (CAS(12e,12o)) calculations were higher than those of $4d$ $\sigma$ and $\pi$ orbitals. Including them in the active space would give a better result. However, the computations increased a lot. We had to decrease the bond dimension to 500 in DMRG-NEVPT2 calculation.
