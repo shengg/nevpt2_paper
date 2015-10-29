@@ -24,13 +24,13 @@ where $\epsilon_i $ and $\epsilon_r$ are orbital energies.
 $H_v$ is a two-electron operator confined to the active space:
 
 \begin{equation}
-  H_v = \sum_{ab,\sigma}^{act} h^{eff}_{ab} \hat{a}^\dagger_{a,\sigma} \hat{a}_{b,\sigma} + \sum_{abcd,\sigma_1,\eta}^{act} \braket{ab|cd} \hat{a}^\dagger_{a,\sigma}\hat{a}^\dagger_{b,\eta}\hat{a}_{d,\eta}\hat{a}_{c,\sigma}
+  H_v = \sum_{ab,\sigma}^{act} h^{eff}_{ab} \hat{a}^\dagger_{a,\sigma} \hat{a}_{b,\sigma} + \sum_{abcd,\sigma,\eta}^{act} \braket{ab|cd} \hat{a}^\dagger_{a,\sigma}\hat{a}^\dagger_{b,\eta}\hat{a}_{d,\eta}\hat{a}_{c,\sigma}
 \end{equation}
 where $h_{ab}^{eff} = h_{ab} + \sum_{i}^{core} (2\braket{ai|bi}-\braket{ai|ib})$
 
 and $C$ is a constant to ensure that $H^D$ is equivalent to the full Hamiltonian within the CAS space.
 
-The zero order wave functions external to the CAS space, referred to as the ``perturbers'', belong to CAS-CI spaces with well defined patterns of the inactive (core+virtual) orbitals and with a given number of active electrons. The perturber functions are written  as $\ket{\Psi^{(k)}_{l,\mu}}$ and the corresponding CAS-CI spaces as $S_l^{(k)}$, where $k$ is the number of electrons promoted to ($k>0$) or removed from ($k<0$) the active space, $l$ denotes the pattern of inactive orbitals and $\mu$ numerates the various perturbers. 
+The zero order wave functions external to the CAS space, referred to as the ``perturbers''. The ``perturber'' are written  as $\ket{\Psi^{(k)}_{l,\mu}}$ and the corresponding CAS-CI spaces as $S_l^{(k)}$, where $k$ is the number of electrons promoted to ($k>0$) or removed from ($k<0$) the active space, $l$ denotes the occupancy of nonactive orbitals and $\mu$ numerates the various ``perturbers''. 
 
 In stongly contracted NEVPT2, utilizes just one function from each $S_l^{(k)}$ subspace, $\ket{\Psi^{(k)}_l} = S^{(k)}_l H \ket{\Psi^{(0)}_m}$ with energy given by
 
@@ -46,12 +46,12 @@ And the zero order Hamiltonian becomes
 where $\ket{\Psi^{(k)'}_l}$ is normalized $\ket{\Psi^{(k)}_l}$
 
 
-The bottle neck is the evaluation of energies of perturbers, where up to forth order RDM is needed. 4-RDM is contracted with double electron integral in active space to form auxiliary matrices. \cite{ angeli_n-electron_2002} In our implementation for DMRG-NEVPT2, 4-RDM is computed on the fly, avoiding storing huge 4-RDM.
+The bottle neck is the evaluation of energies of ``perturbers'', where up to forth order RDM is needed. 4-RDM is contracted with double electron integral in active space to form auxiliary matrices. \cite{ angeli_n-electron_2002} In our implementation for DMRG-NEVPT2, 4-RDM is computed on the fly, avoiding storage problem.
 
 %FIXME
 %interface between Block and other software.
 
-Like Kurashige and Yanai's implementation of DMRG-CASPT2\cite{kurashige_second-order_2011}, these auxiliary matrices can be computed with a scaling similar with that of 3-RDM by make special types of operators, which are the contraction of integral and creation (and annihilation) operators. However, the two-electron Hamiltonian in NEVPT2 is much more complex that the Fork operators (which is diagonal if canonical orbitals used) in CASPT2. Many types of contracted operators would be needed in DMRG frame. It is the very hard to implement and the prefactor is big, even though the scaling is better. Therefore, We only contracted integral and operators in CASCI-NEVPT2, not in DMRG-NEVPT2.
+Like Kurashige and Yanai's implementation of DMRG-CASPT2\cite{kurashige_second-order_2011}, these auxiliary matrices can be computed with a scaling similar with that of 3-RDM by make special types of operators, which are the contraction of integral and creation (and annihilation) operators. However, the two-electron Hamiltonian in NEVPT2 is much more complex that the Fork operators (which is diagonal if canonical orbitals used) in CASPT2. Many types of contracted operators would be needed in DMRG frame. It is the very hard to implement and the prefactor is big, even though the scaling is better. Therefore, We only made special operators by contracting integral and operators to compute the auxiliary matrices with a 3-RDM cost for NEVPT2 based on CI type reference functions, not for DMRG reference function.
 
 
 

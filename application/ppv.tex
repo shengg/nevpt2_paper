@@ -1,19 +1,19 @@
 \subsection{Poly(p-phenylene vinylene)}
 
-Poly(p-phenylene vinylene) is a type of phenyl-based light emitting conjugated polymers, which is useful for displays and photovoltaic devices. It has many low-lying states that participate in the photophysics and it was extensively investigated through theoretical methods, sush as DMRG based on Pariser\textendash Parr\textendash Pople (PPP) model \cite{shukla_correlated_2002}\cite{bursill_symmetry-adapted_2009} and semi-empirical intermediate neglect of differential overlap (INDO) Hamiltonian with configuration interaction \cite{beljonne_theoretical_1995}. 
+Poly(p-phenylene vinylene) is a type of phenyl-based light emitting conjugated polymers, which is useful for displays and photovoltaic devices. It has many low-lying states that participate in the photophysics and it was extensively investigated through theoretical methods, sush as DMRG based on Pariser\textendash Parr\textendash Pople (PPP) model \cite{shukla_correlated_2002,bursill_symmetry-adapted_2009} and semi-empirical intermediate neglect of differential overlap (INDO) Hamiltonian with configuration interaction \cite{beljonne_theoretical_1995}. 
 However, ab initio correlated wave function calculations were not often reported, because of the difficulty to include static and dynamic correlation together for a complex system.
 We used PPV-3 as an example and demonstrated how to predict the excitation energies for low-lying state through DMRG-NEVPT2 calculation and the accuracy of DMRG-NEVPT2 for conjugated polymer molecule.
 
-The cc-pVDZ basis was used for the calcualtions and an active space was chosen from 22 conjugated $\pi$ orbitals. We obtained the ground state equilibrium geometry of PPV-3 via DMRG-CI geometry optimization\cite{hu_excited-state_2015} with an interface between Block and orca\cite{neese_orca_2012}, starting from a guess from DFT/B3LYP optimized geometry. The geometry optimization was first run at M = 1000, and then near the convergence at M = 2000. Canonical orbitals are used in the geometry optimization.
+The cc-pVDZ basis was used for the calcualtions and an active space was chosen from 22 conjugated $\pi$ orbitals. We obtained the ground state equilibrium geometry of PPV-3 via DMRG-CI geometry optimization\cite{hu_excited-state_2015} with an interface between Block and ORCA\cite{neese_orca_2012}, starting from a guess from DFT/B3LYP optimized geometry. The geometry optimization was first run at M = 1000, and then near the convergence at M = 2000. Canonical orbitals are used in the geometry optimization.
 %For the first optically bright state, we also started from the DFT guess ground state geometry.
 
 Then state-averaged calculations were performed for $^1A_g$ (2 states) and $B_u$ symmetry (3 states), with canonical orbitals of the ground state. 
-To identify excited states, we computed the transition 1-RDM and transition 2-RDM from the ground state, and identified the state according to a dominant excitation signature.
+To identify excited states, we computed the transition 1-RDM and transition 2-RDM from the ground state, and identified the state according to dominant excitation signatures.
 Based on the chosen active space, $3^1B_u$ is identified as the first optically bright state, with a HOMO$\rightarrow$ LUMO excitation signature. And $2^2A_g$ in state-average calculation with 2 staets ($3^2A_g$ when more states were averaged) is the first dark state, with a HOMO-1$\rightarrow$ LUMO + HOMO$\rightarrow$ LUMO+1 and HOMO,HOMO$\rightarrow$ LUMO,LUMO excitation signature.
-Due to lack of dynamic correlation ($\sigma-\pi$ interaction), the energy order of excited states is significantly different with experimental results or calculations with PPP model.
+Due to lack of dynamic correlation ($\sigma-\pi$ interaction), the energy order of excited states is significantly different with experimental results or calculations based on PPP model\cite{shukla_correlated_2002,bursill_symmetry-adapted_2009}.
 
 After including dynamic correlation through DMRG-NEVPT2, the energy first bright state was much lowered and it became the first excited state ($1^1B_u$). 
-This is similar to low-lying excited states of polyenes, where dynamic correlations lower the ionic excited state ($1^1B_u$) relative to covalent excited state ($2^1A_g$)
+This is similar to low-lying excited states of polyenes, where dynamic correlations lower the ionic excited state relative to covalent excited state.
 However, the energy order did not converge with the bond dimension in the calculation (Table~\ref{table:canonical}).
 
 
@@ -34,7 +34,8 @@ However, the energy order did not converge with the bond dimension in the calcul
 
 Localized orbitals usually give a better convergence for DMRG calculation.\cite{olivares-amaya_ab-initio_2015} Therefore, further DMRG-NEVPT2 calculations were carried out based on split-localized orbitals (localize the occupied and unoccupied $\pi$ orbitals separately with Pipek-Mezey method\cite{pipek_fast_1989}). 
 The NEVPT2 energies were calculated for lowest 6 states (based on DMRG-CI energy). The excitation energies were converged into less than $0.6 meV$with bond dimension (Table~\ref{table:local}). They were accurate enough to determine the energy order of low-lying excite states. 
-The difference between calculated excitation energies from canonical orbital and those from local orbitals was big, and it might not be the same even when bond dimension is infinite. One reason is that the molecular geometry was optimized without symmetry restriction. Some integral terms, which should be zero according symmetry, were not exact zero. When local orbital orbitals were used, the symmetry restriction on the integral was removed. 
+The difference between calculated excitation energies from canonical orbital and those from local orbitals was big, and it might not be the same even when bond dimension is infinite. One reason is that the molecular geometry was optimized without symmetry restriction. Some integral terms, which should be zero according symmetry, were not exact zero. 
+%When local orbital orbitals were used, the symmetry restriction on the integral was removed. 
 
 \begin{table}
    \caption{Excitation energy (eV) calculated from DMRG-NEVPT2 with localized orbitals. States are labeled according to excitation signatures and energies with M= 750. }
