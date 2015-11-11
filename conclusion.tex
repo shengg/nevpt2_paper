@@ -1,17 +1,17 @@
 
 \section{Conclusion}
 
-In this work, we developed a general algorithm to compute different order RDMs for DMRG wave function, which can be used by many dynamic correlation methods. 
-Through up to 4th order RDM, we combined DMRG and NEVPT2 to discribe static and dynamic correlations at the same time, forming DMRG-NEVPT2, 
-a intruder state free second order multireference perturbation theory. 
-It made the calculations complex molecules with large active spaces possible. 
+In this work, we described an efficient and general algorithm to compute high order RDM's from a DMRG wave function.
+These RDM's may be used as the starting point for many
+different kinds of internally contracted dynamic correlation methods.
+Using up to the 4th order RDM, we combined DMRG and strongly contracted NEVPT2 to obtain
+an intruder state free second order multireference perturbation theory that can be used with large active spaces.
 
-To demonstrate the capability of DMRG-NEVPT2 method, we used this method to calculate the potential energy curve of chromium dimer and excited 
-states of poly(p-phenylene vinylene). For chromium dimer, the extended active space included $4d$ orbitals and the so called ``double d'' effect 
-were considered. It gave quantatively correct potential energy curves, demonstrating that correlation from second shell orbitals were essential for chromium dimer.
-For light emitting conjugated polymers, Poly(p-phenylene vinylene), excitation energy of low-lying excited states were computed through DMRG-NEVPT2 
-with different orbitals in active space. The local orbitals calculation gave results converged with bond dimension much better than canonical 
-orbitals. And the accuracy from local orbital DMRG-NEVPT2 is about $0.6meV$, relative to standard NEVPT2. While the environments were not included 
-in the calculations, the energy order of excited states were reasonable.
-
-Based on above two examples, DMRG-NEVPT2 is a intruder free perturbation methods and it can be used for the molecule where large active spaces are needed.
+To demonstrate the capability of the DMRG-SC-NEVPT2 method, we calculated the potential energy curve of the chromium dimer and the excited 
+states of poly(p-phenylene vinylene) (PPV). For the chromium dimer, the extended active space included $4d$ orbitals and the so called ``double d'' shell.
+Our obtained curve compares quite favourably with earlier calculations and tracks the experimental curve very closely, except
+at very bond-lengths where the experimental inversion may be suspect.
+For PPV-3, using an active space containing the full set of $\pi, \pi^*$ orbitals, we found that the dynamic correlation included through NEVPT2 allowed us to obtain
+a reasonable ordering of the low-lying excited states, and a lowest excitation energy in good agreement with earlier semi-empirical estimates, and
+the experimental absorption result. In summary, these examples paint an optimistic picture for the potential of applying the
+DMRG-SC-NEVPT2 methodology to a wide range of challenging problems.

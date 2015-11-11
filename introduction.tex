@@ -1,30 +1,44 @@
 
-\section{introduction}
+\section{Introduction}
 
-The density matrix renormalization group (DMRG) \cite{white_density_1992,white_density-matrix_1993} has made it accessible to employ large active spaces 
-for electronic structure problems in quantum chemistry. Nowadays, it has become quite straightforward to use DMRG as a robust numerical solver for 
-static electron correlation problems. Examples are benchmark solutions of small molecules\cite{chan_highly_2002}, transition metal 
-clusters\cite{sharma_low-energy_2014, olivares-amaya_ab-initio_2015}, also molecular crystals\cite{yang_ab_2014}. 
+The density matrix renormalization group (DMRG) \cite{white_density_1992,white_density-matrix_1993} has made it possible to employ large active spaces 
+for electronic structure problems in quantum chemistry. It has become straightforward to use DMRG as a robust numerical solver for 
+static electron correlation problems. Examples of recent applications include benchmark solutions of small molecules\cite{chan_highly_2002}, multi-center transition metal clusters\cite{sharma_low-energy_2014, olivares-amaya_ab-initio_2015}, as well as molecular crystals\cite{yang_ab_2014}. 
 
-In chemical systems, electron interaction across large energy scales brings many other important chemistry, such as low-lying excited states in 
-conjugated polymers, high-spin ground state in transition metals complexes. Qualitative and quantitative characterizations of 
-these systems generally require correlating many electrons within a large number of orbitals. Direct treatment of such problem is generally 
-impossible, but indirect methodology can apply, for example, by expanding the electron correlation outside active spaces. So far, there are 
-methods which follow with this strategy with using large active spaces, for example, to apply perturbation theory to a large active space, or 
-perform canonical transformation to get an effective Hamiltonian.
+In chemical systems, electron interactions across a wide range of energy scales are important for many problems. Such interactions are, for example, 
+important in determining the ordering of the low-lying excited states 
+in conjugated molecules, or the correct spin-state splittings in transition metal complexes. Qualitative and quantitative characterizations of 
+these systems generally require correlating many electrons within a large number of orbitals. Direct treatment of such problems is generally 
+impossible, but indirect methods can be used, for example by separating the treatment of electron correlation inside and outside of the active space. 
+So far, there are have been several attempts to apply this strategy with the large active spaces accessible to DMRG, for example
+through perturbation theory or configuration interaction on top of a DMRG active space
+wavefunction~\cite{kurashige_second-order_2011, sharma_communication:_2014}, or by first performing a canonical transformation to obtain an effective Hamiltonian~\cite{neuscammanreview_2010}.
 %On the other hand, dynamic electron correlation is crucial in chemical dynamic processes, which in general involves electron correlation dynamics within a large range of orbitals. 
-The DMRG method has been embedded with the second-order perturbation theory\cite{kurashige_second-order_2011, sharma_communication:_2014}, 
-complete active space perturbation theory (CASPT), and canonical transformation(CT)\cite{neuscamman_review_2010}, etc., to be extended for dynamic correlation. In these methods, high order reduced density matrices are generally needed, which are theoretically straightforward yet computationally non-trivial.
+%% The DMRG method has been embedded with the second-order perturbation theory
+%% complete active space perturbation theory (CASPT), and canonical transformation(CT)\cite{neuscamman_review_2010}, etc., to be extended for dynamic correlation. 
+In these methods, high order reduced density matrices of the DMRG active space wavefunction are required. Such density matrices 
+are simple objects in a theoretical sense, but are computationally non-trivial to obtain.
 
-In this work, we developed a general way to compute high order reduced density matrix (RDM) for DRMG wave functions. 
-On the top of RDM calculations, we implemented the second order $n$-electron valence state perturbation theory (NEVPT2)
-\cite{angeli_introduction_2001,angeli_n-electron_2001, angeli_n-electron_2002}, an intruder-state-free multireference perturbation theory, with DMRG reference wavefunctions, called DMRG-NEVPT2.
-Then we applied it to study potential energy curve of chromium dimer and excitation energies of the quasi-one dimensional  photovoltaic molecule poly(p-phenylene vinylene) (PPV). 
-The calculations for the potential energy curve of chromium dimer is one of the most notorious and demanding problems in ab-inito quantum chemistry. This system has been widely studied by many methods\cite{roos_ground_2003,celani_cipt2_2004,angeli_third-order_2006,muller_large-scale_2009,kurashige_second-order_2011,ruiperez_complete_2011,kurashige_multireference_2014,sharma_multireference_2015}. It is a good system to demonstrate the capacity of DMRG-NEVPT2. 
-PPV has always been of great interest by photophysists and photochemists, as it is well known for its charge-transfer properties upon photoexcitations\cite{burroughes_light-emitting_1990,friend_electroluminescence_1999}. The first optically bright state $1^{1}B_{u}$ whose polaronic feature is suggested to be 
-responsible for the charge-transfer behavior, is estimated to lie below the $2^{1}A_{g}$ with a small gap of 0.7eV\cite{martin_linear_1999}. 
-Many theoretical studies of PPV are based on model Hamiltonian, such as  Pariser\textendash Parr\textendash Pople (PPP) model, \cite{shukla_correlated_2002, bursill_symmetry-adapted_2009} or semi-empirical quantum chemistry method \cite{beljonne_theoretical_1995}. However, ab initio quantum chemistry calculation were hardly reported due to the unaffordable computations to including the dynamic correlation and static correlation at the same time for such a system with many $\pi$ orbitals, which need to be considered as active space in complete active space (CAS) calculations.
-With DMRG-NEVPT2, now it is possible to compute the excitation energies and energy orders of different states accurately.
+In this work, we have developed a general algorithm to efficiently compute high order reduced density matrix (RDM) from DMRG wave functions. 
+Using these RDM calculations, we may then implement a variety of methods to treat electron correlation external to the DMRG active space.
+An example of this, we have implemented the second order $N$-electron valence state perturbation theory (NEVPT2) 
+\cite{angeli_introduction_2001,angeli_n-electron_2001, angeli_n-electron_2002}, an intruder-state-free multireference perturbation theory in it strongly-contracted variant, on top
+of the DMRG reference wavefunction, a method we call DMRG-SC-NEVPT2.
+To demonstrate the potential of this approach, we apply this method to study the potential energy curve of the chromium dimer, and 
+to compute the excitation energies of the quasi-one dimensional conjugated poly(p-phenylene vinylene) (PPV). 
+The chromium dimer is a particularly demanding small molecule that has been widely studied with many methods\cite{roos_ground_2003,celani_cipt2_2004,angeli_third-order_2006,muller_large-scale_2009,kurashige_second-order_2011,ruiperez_complete_2011,kurashige_multireference_2014,sharma_multireference_2015}, and thus forms a good test bed to demonstrate the performance of DMRG-SC-NEVPT2. Using an active space with 22 orbitals and basis sets extrapolated to the CBS limit, we show that we can
+compute both the spectroscopic constants, as well as the full curve,
+with an accuracy that compares quite favourably to earlier calculations.
+PPV is of interest as the prototypical light-emitting polymer\cite{burroughes_light-emitting_1990,friend_electroluminescence_1999}. This property relies
+on the correct ordering of the first optically bright $1^{1}B_{u}$ state
+and  dark $2^{1}A_{g}$ state, which in turn requires an appropriate
+description of the correlation~\cite{shukla_correlated_2002, bursill_symmetry-adapted_2009,beljonne_theoretical_1995}.
+%% The first  whose polaronic feature is suggested to be 
+%% responsible for the charge-transfer behavior, is estimated to lie below the  with a small gap of 0.7eV\cite{martin_linear_1999}. 
+%% While many theoretical studies of PPV have used model Hamiltonians, such as the  Pariser\textendash Parr\textendash Pople (PPP) model, \cite{shukla_correlated_2002, bursill_symmetry-adapted_2009} or other semi-empirical  methods \cite{beljonne_theoretical_1995} due to the large system size, 
+With DMRG-SC-NEVPT2, we show that we can compute the excitation 
+energies and energy ordering of the different states accurately starting 
+from the full-valence active $\pi$ space of the molecule.
 %need to say something more...
 
 %In this work, we introduce an algorithm which generally applies to any order of (transition) particle density matrices for DMRG wave functions. We first give a brief review on the DMRG method in Sec. Further we present a general algorithm to evaluate any order particle density matrices in Sec.. We show the application of this algorithm in the DMRG-NEVPT2 method, to study the static and dynamic correlation effects of photovoltaic polymer PPV in Sec.

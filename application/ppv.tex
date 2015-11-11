@@ -1,16 +1,27 @@
 \subsection{Poly(p-phenylene vinylene)}
 
-Poly(p-phenylene vinylene) is a type of phenyl-based light emitting conjugated polymers, which is useful for displays and photovoltaic devices. It has many low-lying states that participate in the photophysics and it was extensively investigated through theoretical methods, sush as DMRG based on Pariser\textendash Parr\textendash Pople (PPP) model \cite{shukla_correlated_2002,bursill_symmetry-adapted_2009} and semi-empirical intermediate neglect of differential overlap (INDO) Hamiltonian with configuration interaction \cite{beljonne_theoretical_1995}. 
-However, ab initio correlated wave function calculations were not often reported, because of the difficulty to include static and dynamic correlation together for a complex system.
-We used PPV-3 as an example and demonstrated how to predict the excitation energies for low-lying state through DMRG-NEVPT2 calculation and the accuracy of DMRG-NEVPT2 for conjugated polymer molecule.
+Poly(p-phenylene vinylene) is a well-known light emitting conjugated polymer. It has several low-lying states that participate in its photophysics 
+and has been extensively investigated with many theoretical methods, both at the semi-empirical~\cite{shukla_correlated_2002,bursill_symmetry-adapted_2009,beljonne_theoretical_1995} and ab-initio level~\cite{xxx} \textcolor{red}{I'm sure there are ab-initio calculations}. 
+%% However, we ab initio multireference correlated wave function calculations have not been reported for longer oligomers
+%% due to the large number of active orbitals. \textcolor{red}{
+%% were not often reported, because of the difficulty to include static and dynamic correlation together for a complex system.
+We use PPV-3 as an example to demonstrate the quality of DMRG-SC-NEVPT2 for low-lying excited states in a prototypical conjugated molecule.
 
-The cc-pVDZ basis was used for the calcualtions and an active space was chosen from 22 conjugated $\pi$ orbitals. We obtained the ground state equilibrium geometry of PPV-3 via DMRG-CI geometry optimization\cite{hu_excited-state_2015} with an interface between Block and ORCA\cite{neese_orca_2012}, starting from a guess from DFT/B3LYP optimized geometry. The geometry optimization was first run at M = 1000, and then near the convergence at M = 2000. Canonical orbitals are used in the geometry optimization.
+We used a cc-pVDZ basis and a (22e,22o) active space containing the 22 conjugated $\pi, \pi^*$ orbitals. We obtained the ground state equilibrium geometry of PPV-3 via DMRG-CI geometry optimization\cite{hu_excited-state_2015} as implemented with an interface between Block and ORCA\cite{neese_orca_2012}, starting from a guess from the DFT/B3LYP optimized geometry. The geometry optimization was first run at $M$=1000, and near convergence with $M$=2000. Canonical Hartree-Fock orbitals were used 
+in the DMRG calculations in the geometry optimization.
 %For the first optically bright state, we also started from the DFT guess ground state geometry.
 
-Then state-averaged calculations were performed for $^1A_g$ (2 states) and $B_u$ symmetry (3 states), with canonical orbitals of the ground state. 
-To identify excited states, we computed the transition 1-RDM and transition 2-RDM from the ground state, and identified the state according to dominant excitation signatures.
-Based on the chosen active space, $3^1B_u$ is identified as the first optically bright state, with a HOMO$\rightarrow$ LUMO excitation signature. And $2^2A_g$ in state-average calculation with 2 staets ($3^2A_g$ when more states were averaged) is the first dark state, with a HOMO-1$\rightarrow$ LUMO + HOMO$\rightarrow$ LUMO+1 and HOMO,HOMO$\rightarrow$ LUMO,LUMO excitation signature.
-Due to lack of dynamic correlation ($\sigma-\pi$ interaction), the energy order of excited states is significantly different with experimental results or calculations based on PPP model\cite{shukla_correlated_2002,bursill_symmetry-adapted_2009}.
+We then performed state-averaged DMRG-CI calculations using both the canonical orbitals of the ground state, as well as split-localized orbitals. For the canonical orbital DMRG-CI calculations, we performed
+state-averaged calculations within the $^1A_g$ (2 states) and $B_u$ (3 states) symmetry sectors.
+In the case of the split-localized orbital DMRG calculations, we carried out state-averaged calculations over 6 states.
+To identify the character of the excited states in the split-localized basis, we computed the transition 1-RDM and transition 2-RDM from the ground state, and 
+identified the state according to  its excitation signature.
+
+Based on the chosen active space, the (canonical) DMRG-CI calculation 
+identified $3^1B_u$  as the first optically bright state, with a HOMO$\rightarrow$ LUMO excitation signature.  $2^1A_g$ in a state-average calculation 
+with 2 states (\textcolor{red}{this can't be right - the lower Ag state is still dark} $3^1A_g$ when more states were averaged) is the first dark state, with a HOMO-1$\rightarrow$ LUMO + HOMO$\rightarrow$ LUMO+1 and HOMO,HOMO$\rightarrow$ LUMO,LUMO excitation signature.
+Due to the lack of dynamic correlation ($\sigma-\pi$ interaction), the energy ordering of the DMRG-CI excited states is significantly different 
+from experimental~\cite{shukla_correlated_2002,bursill_symmetry-adapted_2009}.
 
 After including dynamic correlation through DMRG-NEVPT2, the energy first bright state was much lowered and it became the first excited state ($1^1B_u$). 
 This is similar to low-lying excited states of polyenes, where dynamic correlations lower the ionic excited state relative to covalent excited state.

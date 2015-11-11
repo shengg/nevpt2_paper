@@ -1,9 +1,13 @@
 
 \subsection{DMRG wavefunction and optimization algorithm}
 
-As with other approximate wavefunction methods in quantum chemistry, DMRG is based on an approximate wvefunction ansatz. It is the matrix product state (MPS).
-A MPS is a non-linear wavefunction, built from contraction of tensors for each orbital in the basis. Limited by the dimension of tensors, called bond dimension, $M$, MPS could only explore a small subspace of Hilbert space. By increasing $M$, the MPS ansatz will give full configuration interaction (FCI) results. DMRG is a combination of renormalization and truncation algorithms to find a variational and optimal MPS. 
-In practice, two types of MPS are often used in DMRG calculations: one-site and two-site MPS. 
+As with other wavefunction methods in quantum chemistry, DMRG is based on a wavefunction ansatz, namely the matrix product state (MPS).
+An MPS is a non-linear wavefunction, built from a contraction of tensors for each orbital in the basis. If an MPS is
+composed of tensors with a limited dimension (called the bond dimension, $M$) it explores only a physically motivated, but restricted, subset of the Hilbert space. 
+By increasing $M$, the MPS ansatz will then converge to the full configuration interaction (FCI) result. The DMRG algorithm provides a combination of 
+renormalization and truncation steps that efficiently find a variational and optimal MPS. 
+In practice, two slightly different types of MPS are used in practical
+DMRG calculations: the one-site and two-site MPS. 
 
 The one-site MPS is defined as
 
@@ -11,9 +15,10 @@ The one-site MPS is defined as
   \ket{\Psi}= \sum_{\substack{n_1, n_2\cdot\cdot\cdot n_p\cdot\cdot\cdot n_k}} {\bf A}^{n_1}{\bf A}^{n_2}\cdot\cdot\cdot {\bf A}^{n_{p}} \cdot\cdot\cdot{\bf A}^{n_k}
 \end{equation}
 
-Here, $n_i$ is the occupacy of orbital $i$, one of $ \{\ket{}, \ket{\uparrow}, \ket{\downarrow}, \ket{\uparrow\downarrow}\}$ and $k$ is the number of orbitals. 
-For a given $n_i$, ${\bf A}^{n_i}$ is $M\times M$ matrix, except that the first and last ones. For ${\bf A}^{n_1}$ and ${\bf A}^{n_k}$, their dimensions are $1\times M$ and $M\times 1$ respectively. 
-This ensures that for a given string $n_1n_2\cdots n_k$, a slater determinant, the ${\bf A}^{n_1}{\bf A}^{n_2}\cdots{\bf A}^{n_k}$ yields a scalar, the coefficient of the determinant $\ket{n_1n_2\cdots n_k}$
+Here, $n_i$ is the occupacy of orbital $i$, one of $ \{\ket{}, \ket{\uparrow}, \ket{\downarrow}, \ket{\uparrow\downarrow}\}$, and $k$ is the number of orbitals. 
+For a given $n_i$, ${\bf A}^{n_i}$ is  an $M\times M$ matrix, except for the first and last ones; the dimensions of ${\bf A}^{n_1}$ and ${\bf A}^{n_k}$ are $1\times M$ and $M\times 1$ respectively.
+This ensures that for a given occupancy string $n_1n_2\cdots n_k$  the ${\bf A}^{n_1}{\bf A}^{n_2}\cdots{\bf A}^{n_k}$ product yields a scalar, 
+namely, the coefficient of the determinant $\ket{n_1n_2\cdots n_k}$.
 
 Similarly, the two-site MPS is defined as
 
@@ -21,25 +26,34 @@ Similarly, the two-site MPS is defined as
   \ket{\Psi}= \sum_{\substack{n_1, n_2\cdot\cdot\cdot n_p\cdot\cdot\cdot n_k}} {\bf A}^{n_1}{\bf A}^{n_2}\cdot\cdot\cdot {\bf A}^{n_{p},n_{p+1}} \cdot\cdot\cdot{\bf A}^{n_k}
 \end{equation}
 
-In DMRG sweep algorithm, $\bra{\Psi}\hat{H}\ket{\Psi}$ is variational optimized. And only a single tensor ($A^{n_i}$ for an one-site MPS or $A^{n_i, n_{i+1}}$ for a two-site MPS) in the MPS is updated during the sweep at site $i$. It can be considered as solving eigenvalue problem of an effective Hamiltonian, which is a $4M^2\times 4M^2$ matrix. 
-The multiplication between this effective Hamiltonian and a MPS is usually computed from $O(k^2)$ operators built on different subspaces of active orbitals spaces. The cost scaling is $O(k^2M^3)$ for this eighenvalue problem for one tensor and is $O(k^3M^3)$ for a whole sweep optimization. 
+The only difference with the one-site MPS, is that one of the tensors (${\bf A}^{n_p n_{p+1}}$) is associated with two sites at a time. The two-site MPS thus
+has slightly more variational freedom than the one-site MPS, and further
+is different depending on which sites contain the special tensor.
 
-Compared to an one-site MPS, a two-site MPS has more variational freedom and is able to change quantum numbers during the sweep. It helps avoid local minimums. However, the two-site MPS has N-representation problem: the converged two-site MPS is still different at different position of the sweep.\cite{zgid_obtaining_2008} Based on a two-site MPS, expectation values, for example reduced density matrix, which often used to characterize a state and is essential for dynamic correlation calculations, have no unique results. 
-Therefore, the strategy, ``two-site to one-site'' (a two-site MPS optimization followed by an one-site one), is widely used\cite{olivares-amaya_ab-initio_2015}. 
+%% This additional tensor, which
+%% would require two MPS tensors at positions $p$, $p+1$ to have bond dimension $4 M$ rather than $M$ if written in the one-site form, is useful
+%% during the numerical optimization of the MPS, as it provides information outside of the space strictly explored by MPS of bond dimension $M$ that
+%% can be used to help improve the convergence, or, to extrapolate the energy as a function of the discarded weight in the renormalization.
 
+In the DMRG sweep algorithm, $\bra{\Psi}\hat{H}\ket{\Psi}$ is variationally optimized, and  a single tensor ($A^{n_i}$ for an one-site MPS or $A^{n_i, n_{i+1}}$ for a two-site MPS) is updated during the sweep at site $i$. This update leads to solving an eigenvalue problem of an effective ``superblock'' Hamiltonian, 
+which is a $4M^2\times 4M^2$ matrix. 
+The multiplication between this effective Hamiltonian and a MPS is usually computed using $O(k^2)$ ``normal'' and ``complementary'' operators 
+built from different sets (blocks) of the active orbitals. The cost of this eigenvalue problem is $O(k^2M^3)$ for a single tensor update, and $O(k^3M^3)$ 
+for a whole sweep optimization. 
 
-
-
-
-
-
-
-
-
-
-
-
-
+As discussed, a two-site MPS has more variational freedom at the site where the special tensor is placed. This allows 
+the DMRG optimization to change quantum numbers, i.e. conserved local symmetries, during the sweep, and thus helps avoid local minima. Further,
+the discarded weight associated with the renormalization step in a two-site MPS sweep optimization can be used to extrapolate away the residual 
+error due to finite bond dimension $M$. 
+However, as the two-site MPS wavefunction at each step of the sweep 
+is slightly different (because the special tensor is moved along the sweep),
+the two-site formalism does not provide a unique definition of the DMRG 
+expectation values.
+Thus, to evaluate the reduced density matrix, we complete the DMRG
+sweep optimization in the one-site representation, to obtain a single 
+DMRG wavefunction. This is
+referred to as the ``two-site to one-site'' algorithm (a two-site MPS optimization followed by a one-site one)~\cite{olivares-amaya_ab-initio_2015}. 
+From here on when we refer to an MPS, we will mean the one-site MPS.
 
 
 %A mixed canonical form of MPS at site $p$ is 
