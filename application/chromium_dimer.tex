@@ -29,7 +29,7 @@ to compute the chromium dimer potential energy curve using DMRG-SC-NEVPT2,
 and with a large active space.
 
 \begin{figure}
-  \includegraphics[width=8cm,height=6cm]{application/12o-nevpt2.eps}
+  \includegraphics[width=1.1\columnwidth]{Cr2-nevpt2.eps}
   \caption{NEVPT2(12e,12o) potential energy curve with a suite cc-pwcVXZ (X=T,Q,5) basis set}
   \label{fig:12o_nevpt2}
 \end{figure}
@@ -46,61 +46,72 @@ using larger basis sets together with this small active space indeed yields far 
 
 We then extended the (12e,12o) active space by adding another set of $\sigma$, $\pi$, $\pi'$, $\delta$, $\delta'$ orbitals and their corresponding anti-bonding orbitals 
 to obtain a (12e,22o) active space. We selected the orbitals from the converged (12e,12o) CASSCF calculation based on symmetry and the orbital energies,
-and the orbitals were further optimized using DMRG-CASSCF ($M$=1000, no frozen core). Although the initial orbitals contained both $4p$ and $4d$ character, 
-the resulting additional converged active space orbitals were only of $4d$ character. \textcolor{red}{Is this strictly true?} This is not surprising, as a $4d$ double shell is well known to greatly improve the transition metal CAS results~\cite{andersson_excitation_1992}.
+and the orbitals were further optimized using DMRG-CASSCF ($M$=1000, no frozen core). Although the additional active orbitals contained both $4p$ and $4d$ orbitals at first, 
+the optimized additional active orbitals were mainly $4d$ orbitals.  This is not surprising, as a $4d$ double shell is well known to greatly improve the transition metal CAS results~\cite{andersson_excitation_1992}.
 From the DMRG-CASSCF optimized orbitals, we then carried out a final larger DMRG calculation with $M$=4000 to obtain an accurate reference wavefunction.
-The resulting DMRG reference energy in the active space is accurate to better than \textcolor{red}{[X] m$E_h$.}
+The resulting DMRG reference energy in the active space is accurate to better than 0.1 m$E_h$.
 To compute the RDM's for the DMRG-SC-NEVPT2 calculation, the large bond dimension reference MPS was compressed down to an MPS with $M'$=800. 
-To determine the error associated with this compression, the DMRG-SC-NEVPT2 energies in the cc-pwcV5Z basis 
-were recomputed for geometries near the energy minimum using a larger compressed MPS with $M'$=1200. The difference between the DMRG-SC-NEVPT2 energies with $M'=800$ and $M'=1200$ 
-was found to be very small \textcolor{red}{(how small?)}. Finally, the (TZ/QZ/5Z) 
-energies were extrapolated to the complete basis set (CBS) limit using
-an exponential formula for the DMRG-CASSCF energy, and an $L^{-3}$ formula for DMRG-NEVPT2 correction energy. (\textcolor{red}{Do we need to be more explicit about the formula?})
+Finally, the (TZ/QZ/5Z) energies were extrapolated to the complete basis set (CBS) limit using
+an exponential formula for the DMRG-CASSCF energy, and an $l^{-3}$ formula for DMRG-NEVPT2 correction energy, where $l$ is the maximum angular momentum of basis set.
 
 \begin{figure}
-  \includegraphics[width=8cm,height=6cm]{application/5qt-fitting.eps}
-  \caption{\textcolor{red}{Make this figure into two: one showing only the NEVPT2 results with the bases, and one showing the comparison at the
-CBS limit with the other methods}. DMRG-SC-NEVPT2(12e,22o)(M=800) potential energy curve with a suite of cc-pwcVXZ (X=T,Q,5) basis sets, and the extrapolated complete basis set (CBS) limit. 
-The experimental curve is taken from Ref.~\onlinecite{casey_negative_1993}. The DMRG-CASCPT2(12e,28o) curve is from Ref.~\onlinecite{kurashige_second-order_2011} and the MR-AQCC(12e,12o) curve is from Ref.~\onlinecite{muller_large-scale_2009}.}
-  \label{fig:5qt_fitting}
+  \centering
+  \includegraphics[width=1.1\columnwidth]{Cr2-dmrg-nevpt2.eps}
+  \caption{DMRG-SC-NEVPT2(12e,22o)(M=800) potential energy curve with a suite of cc-pwcVXZ (X=T,Q,5) basis sets, and the extrapolated CBS limit. 
+The experimental curve is taken from Ref.~\onlinecite{casey_negative_1993}.}
+  \label{fig:dmrg-nevpt2}
 \end{figure}
+\begin{figure*}
+  \includegraphics[width=1.5\columnwidth]{Cr2-curves.eps}
+  \caption{Cr$_2$ potential energy curves from different methods.  The DMRG-CASCPT2(12e,28o) curve is from Ref.~\onlinecite{kurashige_second-order_2011} and the MR-AQCC(12e,12o) curve is from Ref.~\onlinecite{muller_large-scale_2009}.}
+  \label{fig:compare}
+\end{figure*}
 
-Figure \ref{fig:5qt_fitting} shows the potential energy curves obtained with the cc-pwcVXZ (X=T,Q,5) basis sets and the X2C Hamiltonian, as well as the extrapolated
+Figure \ref{fig:dmrg-nevpt2} shows the potential energy curves obtained with the cc-pwcVXZ (X=T,Q,5) basis sets and the X2C Hamiltonian, as well as the extrapolated
 CBS curve. A comparison of the CBS curve to curves obtained with other
-methods is shown in Fig.~\ref{fig:xxx}, and potential energy curves without the relativistic correction are shown in Fig.~\ref{fig:nonrel}.
-We see that larger basis sets using this active space yield systematically
-improved curves, and that
-the CBS potential energy curve agrees very well with the experimental curve, over a wide range of distances. The relativistic correction \textcolor{red}{insert behaviour here}. The only significant deviation occurs near the strong bend at about 2.8\AA, where the reliability of the RKR potential  has previously been questioned.\cite{roos_ground_2003}
+methods is shown in Fig.~\ref{fig:compare}.
+We see that larger basis sets using this active space yield systematically improved curves, and that
+the CBS potential energy curve agrees very well with the experimental curve, over a wide range of distances. The only significant deviation occurs near the strong bend at about 2.8\AA, where the reliability of the RKR potential  has previously been questioned.\cite{roos_ground_2003}
 The spectroscopic constants are shown in Table \ref{tab:spectro}.
-Our obtained CBS $D_e$ of 1.491eV \textcolor{red}{how many significant digits??} is very close to the experimentally measured value of \textcolor{red}{[person using method]}
-1.47eV \cite{casey_negative_1993}, while the bond-length and vibrational frequency agree well also. It is remarkable to note that even
-with the largest cc-pwcV5Z basis, the binding energy is still \textcolor{red}{[X] eV} away from the CBS limit,  demonstrating the very large basis set 
-effects in this system. The
-relativistic contribution to $D_e$ is \textcolor{red}{[X] eV}.
-\textcolor{red}{Aren't there several experimental values? 
-Is it possible to distinguish between the experimental values now? What is the magnitude of the relativistic contribution?}
+Our obtained CBS $D_e$ of 1.43eV is very close to the results from Casy and Leopoid's negative ion photoelectron spectroscopy,
+1.47eV \cite{casey_negative_1993}, while the bond-length and vibrational frequency also agree well. It is remarkable to note that even
+with the largest cc-pwcV5Z basis, the binding energy is still 0.14 eV away from the CBS limit,  demonstrating the very large basis set 
+effects in this system.  
 
 Compared to earlier ``accurate'' calculations, the computed DMRG-SC-NEVPT2 curve 
 here compares  quite favourably. For example, near the equilibrium
 distance, the DMRG-SC-NEVPT2(12e,22o) curve is almost identical to the DMRG-CASPT2(12e,28o) curve\cite{kurashige_second-order_2011}. However, in the stretched $4s$ bonding (``shoulder'') region, the DMRG-SC-NEVPT2(12e,22o) curve is much closer to the experimental one. This seems consistent with the increased correlation strength in the $4s$ bonding region, which should be harder to describe with the simpler zeroth order Hamiltonian employed in CASPT2. Across the full range of distances, the DMRG-SC-NEVPT2 curve also appears considerably more accurate than the MR-AQCC(12e,12o) curve, likely due to the larger active space employed.
 
 The (12e,28o) CAS used in the earlier DMRG-CASPT2 calculations 
-contained $4p$ orbitals. However, the accuracy of the DMRG-NEVPT2(12e,22o) curve as compared to the DMRG-CASPT2(12e,28o), together with the fact that only $4d$ orbitals remain in the active space after orbital optimization, suggest that $4d$ orbitals are more important than the $4p$ orbitals in the correlations of this system. It has also been suggested in some studies
+contained $4p$ orbitals. However, the accuracy of the DMRG-SC-NEVPT2(12e,22o) curve as compared to the DMRG-CASPT2(12e,28o), together with the fact that only $4d$ orbitals remain in the active space after orbital optimization, suggest that $4d$ orbitals are more important than the $4p$ orbitals in the correlations of this system. It has also been suggested in some studies
 that semi-core correlations (involving the $3s$, and $3p$ orbitals) are also very important in this system. In Fig.~\ref{fig:semicore} we show the corresponding curves
 computed using as (28e,20o) active space containing the semi-core $3s, 3p$ orbitals and $3d, 4s$ valence shell (but no $4d$ shell). We see that the curves are much worse than the curves obtained with the (12e,22o) active space above. This 
 suggests that the double shell correlations are more important than 
 the semi-core correlations in this system, and that the latter are well accounted for at the second-order perturbation theory level.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=1.1\columnwidth]{Cr2-dmrg-nevpt2_semicore.eps}
+  \caption{DMRG-SC-NEVPT2(28e,20o)(M=800) potential energy curve with a suite of cc-pwcVXZ (X=T,Q,5) basis sets, and the extrapolated CBS limit. 
+The experimental curve is taken from Ref.~\onlinecite{casey_negative_1993}.}
+  \label{fig:semicore}
+\end{figure}
+
  \begin{table}
-\caption{Spectroscopic constants for the ground state of Cr$_2$ using different methods. \textcolor{red}{Include AFQMC data also.} \label{tab:spectro}}
+\caption{Spectroscopic constants for the ground state of Cr$_2$ using different methods.  \label{tab:spectro}}
   \begin{tabular}{cccc}
   \hline
-      & $D_e(eV)$ & $R_0($\AA$)$ & $\omega_e$ \\
+  & $D_e(eV)$ & $R_0($\AA$)$ & $\omega_e$(cm$^{-1}$ \\
   \hline
-  DMRG-SC-NEVPT2(12e,22o) & 1.436 & 1.656 & 476 \\ 
-  DMRG-CASPT2(12e,28o)\footnote{DMRG-CASPT2(12e,28o)/{\bf $g_1$}($M=\infty$) in Ref.~\onlinecite{kurashige_second-order_2011}} & 1.61 & 1.681 & 480 \\
-  MR-AQCC(12e,12o)\footnote{Ref.~\onlinecite{muller_large-scale_2009}} & 1.355 & 1.685 & 459 \\
-  experiment\footnote{Ref.~\onlinecite{casey_negative_1993}} & 1.47(5) & 1.679 & 480.6(5) \\
+  %DMRG-SC-NEVPT2(12e,22o)(M=500) & 1.427 & 1.655 & 486 \\ 
+  DMRG-SC-NEVPT2(12e,22o) \footnote{It is from the fitting of the energies at five points R=1.60,1.65, 1.70, 1.75, and 1.80 \AA}&  & & \\
+  M=800 & 1.425 & 1.654 & 482 \\ 
+  M=1200 & 1.429 & 1.656 & 471 \\ 
+  DMRG-CASPT2(12e,28o)\footnote{DMRG-CASPT2(12e,28o)/{\bf $g_1$}($M=\infty$) with cc-pwcV5Z basis set in Ref.~\onlinecite{kurashige_second-order_2011}} & 1.610 & 1.681 & 480 \\
+  MR-AQCC(12e,12o)\footnote{TZP/QZP CBS limit in Ref.~\onlinecite{muller_large-scale_2009}} & 1.355 & 1.685 & 459 \\
+  FP-AFQMC\footnote{Ref.~\onlinecite{purwanto_auxiliary-field_2015}} & 1.63(5) & 1.65(2) & 552(93) \\
+  experiment & 1.47(5)\footnote{\label{fn:note1}Ref.~\onlinecite{casey_negative_1993}} & 1.679\footnote{Ref.~\onlinecite{bondybey_electronic_1983}} & 480.6(5)\footref{fn:note1} \\
+  & 1.47 $\pm$0.1 \footnote{Ref.~\onlinecite{su_bond_1993}}& &\\ 
   \hline
   \end{tabular}
 \end{table}

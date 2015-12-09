@@ -1,60 +1,60 @@
 \section*{Apppendix A: Edge cases for number patterns in RDM}
-All number patterns in N-RDM, \{$n_\mathcal{S}$,$n_\mathcal{D}$,$n_\mathcal{E}$\}, need to be computed if 
+All number patterns in the N-RDM, \{$n_\mathcal{S}$, $n_\mathcal{D}$, $n_\mathcal{E}$\}, need to be computed if 
 \begin{align}
 0\le n_\mathcal{S} \le N \\
 0\le n_\mathcal{E} \le N-1 \\
 1\le n_\mathcal{D} \le 4 \\
-n_\mathcal{S} +n_\mathcal{D} +n_\mathcal{E} =2N \\
+n_\mathcal{S} +n_\mathcal{D} +n_\mathcal{E} =2N
 \end{align}
 
-However, for some RDM elements, whose indices cannot be aranged as what we discribed above, because too many their indices lie in first or last site. We need additional number patterns to compute them.
+However, there are some RDM elements, whose indices cannot be arranged as described above, because too many their indices lie in first or last site. We need additional number patterns to compute these elements.
 
-For the first step of DMRG sweep, additional patterns are added. These patterns satisfies
+For the first step of the DMRG sweep, additional patterns are added. These patterns satisfy
 \begin{align}
-N+1\le n_\mathcal{S} \le min(4,2N) \\
+N+1\le n_\mathcal{S} \le \min(4,2N) \\
 0\le n_\mathcal{D} \le 4 \\
-n_\mathcal{S} +n_\mathcal{D} +n_\mathcal{E} =2N \\
+n_\mathcal{S} +n_\mathcal{D} +n_\mathcal{E} =2N 
 \end{align}
 
-For the last step of DMRG sweep, additional patterns are also added. These patterns satisfies
+For the last step of the DMRG sweep, additional patterns are also added. These patterns satisfy
 \begin{align}
-N\le n_\mathcal{E} \le min(4,2N) \\
+N\le n_\mathcal{E} \le \min(4,2N) \\
 0\le n_\mathcal{D} \le 4 \\
-n_\mathcal{S} +n_\mathcal{D} +n_\mathcal{E} =2N \\
+n_\mathcal{S} +n_\mathcal{D} +n_\mathcal{E} =2N
 \end{align}
 
-Because $\mathcal{S}$ (or $\mathcal{E}$) is composed of single site, expectation value of an operator with more than two $\hat{a}$ or two $\hat{a}^\dagger$ on it is zero. The number of indices on single sites should not be more than 4.
+Because $\mathcal{S}$ (or $\mathcal{E}$) is composed of single site in the first or last step of sweeping, expectation value of an operator with more than two $a$ or two $a^\dagger$ is zero. The number of indices on single sites should not be more than 4.
 
-\section*{Apppendix B: Restriction on type patterns in RDM}
-It is a waste of resource to compute RDM element which is zero or redundant. And the RDM element can be computed through multiple types of combinations of operators. We implemented some restrictions to skip calculations for zero and redundant RDM elements.
+\section*{Apppendix B: Restriction on type patterns}
+It is a waste of resources to compute RDM elements which are zero or redundant. And RDM elements can be computed through multiple types of combinations of operators. We implemented some restrictions to skip calculations for zero and redundant RDM elements.
 
-The operators $\hat{a}_i$ and $\hat{a}^\dagger_j$ are permutated to make their orbitals indices not decrease. Only the permutation between two operators with different orbital indices are needed.
-If $\hat{a}_i$ is ahead of $\hat{a}^\dagger_j$ and $i=j$, the compound operators are not needed in RDM calcualtion. For a single site block, the type with $\hat{a}$ ahead of $\hat{a}^\dagger$ is omitted. For other blocks, the loop of for $\hat{o}_i\hat{o}_j\hat{o}_k\dots$ should be $i \le j \le k\dots$ ( '$=$' is only valid when the two nearby operators in normal order). 
+The operators $a_i$ and $a^\dagger_j$ are permuted, so the orbitals indices not decrease. Only the permutation between two operators with different orbital indices are needed.
+If $a_i$ precedes $a^\dagger_j$ and $i=j$, the compound operators are not needed in the RDM calcualtion. For a single site block, the type with $a$ ahead of $a^\dagger$ is omitted. For other blocks, the loop over $o_io_jo_k\dots$ should satisfy $i \le j \le k\dots$ ('$=$' is only valid when the two adjacent operators in normal order). 
 
 
-And the RDM ( not transition RDM) is symmetry matrix. Use 3-RDM as example 
+Further the RDM (but not transition RDM) is a Hermitian matrix. Using 3-RDM as an example 
 %\begin{equation}
-%  \bra{\Psi}\hat{a}_i^\dagger\hat{a}_j^\dagger\hat{a}_k\hat{a}_l\ket{\Psi} = \bra{\Psi}\hat{a}_l^\dagger\hat{a}_k^\dagger\hat{a}_j\hat{a}_i\ket{\Psi}^* = \bra{\Psi}\hat{a}_l^\dagger\hat{a}_k^\dagger\hat{a}_j\hat{a}_i\ket{\Psi} = \bra{\Psi}(\hat{a}_i^\dagger\hat{a}_j^\dagger\hat{a}_k\hat{a}_l)^\dagger\ket{\Psi}
+%  \bra{\Psi}a_i^\dagger a_j^\dagger a_ka_l\ket{\Psi} = \bra{\Psi}a_l^\dagger a_k^\dagger a_ja_i\ket{\Psi}^* = \bra{\Psi}a_l^\dagger a_k^\dagger a_ja_i\ket{\Psi} = \bra{\Psi}(a_i^\dagger a_j^\dagger a_ka_l)^\dagger\ket{\Psi}
 %\end{equation}
 \begin{equation}
-  \langle \hat{a}_i^\dagger\hat{a}_j^\dagger\hat{a}^\dagger_k\hat{a}_l\hat{a}_m\hat{a}_n\rangle = \langle(\hat{a}_i^\dagger\hat{a}_j^\dagger\hat{a}^\dagger_k\hat{a}_l\hat{a}_m\hat{a}_n)^\dagger\rangle
-  = \langle \hat{a}_n^\dagger\hat{a}_m^\dagger\hat{a}_l^\dagger\hat{a}_k\hat{a}_j\hat{a}_i\rangle
+  \langle a_i^\dagger a_j^\dagger a^\dagger_k a_l a_m a_n\rangle = \langle(a_i^\dagger a_j^\dagger a^\dagger_k a_l a_m a_n)^\dagger\rangle
+  = \langle a_n^\dagger a_m^\dagger a_l^\dagger a_k a_j a_i\rangle
 \end{equation}
-We can always use transpose and permutation to make operators begin with $\hat{a}^\dagger$ rather than $\hat{a}$ (the beginning is the operator with smallest orbital indice). Therefore, all types pattern begin with $\hat{a}$ is omitted. 
+We can always use transpose and permutation to make the operators begin with $a^\dagger$ rather than $a$ (the first operator of the list is the operator with the smallest orbital index). Therefore, all type patterns begining with $a$ list are omitted. 
 
-Similarly, if operators begin with $\hat{a}^\dagger_i\hat{a}_i$, $\hat{a}^\dagger_i\hat{a}_i\hat{a}^\dagger_j\hat{a}_j$ or $\hat{a}^\dagger_i\hat{a}_i\hat{a}^\dagger_j\hat{a}_j\hat{a}^\dagger_k\hat{a}_k$, the remaining part of operators also has transpose and permutation symmetry.
+Similarly, if an operator begins with $a^\dagger_ia_i$, $a^\dagger_ia_ia^\dagger_ja_j$ or $a^\dagger_ia_ia^\dagger_ja_ja^\dagger_ka_k$, the remaining set of operators also has the transpose and permutation symmetry. e.g.:
 
 \begin{equation}
 \begin{aligned}
-  &\langle\hat{a}^\dagger_i\hat{a}_i(\hat{o}_j \hat{o}_k\dots)\rangle \\
-  = &\langle(\hat{a}^\dagger_i\hat{a}_i (\hat{o}_j \hat{o}_k\dots))^\dagger\rangle \\
-  = &\langle(\hat{o}_j \hat{o}_k\dots)^\dagger(\hat{a}^\dagger_i\hat{a}_i)^\dagger\rangle \\
-  = &\langle\hat{a}^\dagger_i\hat{a}_i(\hat{o}_j \hat{o}_k\dots)^\dagger\rangle
+  &\langle a^\dagger_ia_i(o_j o_k\dots)\rangle \\
+  = &\langle(a^\dagger_ia_i (o_j o_k\dots))^\dagger\rangle \\
+  = &\langle(o_j o_k\dots)^\dagger(a^\dagger_ia_i)^\dagger\rangle \\
+  = &\langle a^\dagger_ia_i(o_j o_k\dots)^\dagger\rangle
 \end{aligned}
 \end{equation}
 where $i < j\le k\dots$
 
-Therefore, there is no need to compute the types operators in which $\hat{a}$ follows $\hat{a}^\dagger_i\hat{a}_i$.
+Therefore, there is no need to compute the type patterns in which $a$ follows $a^\dagger_ia_i$.
 
 %Combine Permutation and transpose 
 %Redundant terms

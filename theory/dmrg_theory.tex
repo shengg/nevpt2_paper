@@ -10,22 +10,18 @@ In practice, two slightly different types of MPS are used in practical
 DMRG calculations: the one-site and two-site MPS. 
 
 The one-site MPS is defined as
-
 \begin{equation}
   \ket{\Psi}= \sum_{\substack{n_1, n_2\cdot\cdot\cdot n_p\cdot\cdot\cdot n_k}} {\bf A}^{n_1}{\bf A}^{n_2}\cdot\cdot\cdot {\bf A}^{n_{p}} \cdot\cdot\cdot{\bf A}^{n_k}
 \end{equation}
-
 Here, $n_i$ is the occupacy of orbital $i$, one of $ \{\ket{}, \ket{\uparrow}, \ket{\downarrow}, \ket{\uparrow\downarrow}\}$, and $k$ is the number of orbitals. 
 For a given $n_i$, ${\bf A}^{n_i}$ is  an $M\times M$ matrix, except for the first and last ones; the dimensions of ${\bf A}^{n_1}$ and ${\bf A}^{n_k}$ are $1\times M$ and $M\times 1$ respectively.
 This ensures that for a given occupancy string $n_1n_2\cdots n_k$  the ${\bf A}^{n_1}{\bf A}^{n_2}\cdots{\bf A}^{n_k}$ product yields a scalar, 
 namely, the coefficient of the determinant $\ket{n_1n_2\cdots n_k}$.
 
 Similarly, the two-site MPS is defined as
-
 \begin{equation}
-  \ket{\Psi}= \sum_{\substack{n_1, n_2\cdot\cdot\cdot n_p\cdot\cdot\cdot n_k}} {\bf A}^{n_1}{\bf A}^{n_2}\cdot\cdot\cdot {\bf A}^{n_{p},n_{p+1}} \cdot\cdot\cdot{\bf A}^{n_k}
+  \ket{\Psi}= \sum_{\substack{n_1, n_2\cdot\cdot\cdot n_p\cdot\cdot\cdot n_k}} {\bf A}^{n_1}{\bf A}^{n_2}\cdot\cdot\cdot {\bf A}^{n_{p}n_{p+1}} \cdot\cdot\cdot{\bf A}^{n_k}
 \end{equation}
-
 The only difference with the one-site MPS, is that one of the tensors (${\bf A}^{n_p n_{p+1}}$) is associated with two sites at a time. The two-site MPS thus
 has slightly more variational freedom than the one-site MPS, and further
 is different depending on which sites contain the special tensor.
@@ -35,7 +31,7 @@ is different depending on which sites contain the special tensor.
 %% during the numerical optimization of the MPS, as it provides information outside of the space strictly explored by MPS of bond dimension $M$ that
 %% can be used to help improve the convergence, or, to extrapolate the energy as a function of the discarded weight in the renormalization.
 
-In the DMRG sweep algorithm, $\bra{\Psi}\hat{H}\ket{\Psi}$ is variationally optimized, and  a single tensor ($A^{n_i}$ for an one-site MPS or $A^{n_i, n_{i+1}}$ for a two-site MPS) is updated during the sweep at site $i$. This update leads to solving an eigenvalue problem of an effective ``superblock'' Hamiltonian, 
+In the DMRG sweep algorithm, $\bra{\Psi}H\ket{\Psi}$ is variationally optimized, and  a single tensor ($A^{n_i}$ for a one-site MPS or $A^{n_i, n_{i+1}}$ for a two-site MPS) is updated during the sweep at site $i$. This update leads to solving an eigenvalue problem of an effective ``superblock'' Hamiltonian, 
 which is a $4M^2\times 4M^2$ matrix. 
 The multiplication between this effective Hamiltonian and a MPS is usually computed using $O(k^2)$ ``normal'' and ``complementary'' operators 
 built from different sets (blocks) of the active orbitals. The cost of this eigenvalue problem is $O(k^2M^3)$ for a single tensor update, and $O(k^3M^3)$ 
