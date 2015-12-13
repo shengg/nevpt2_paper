@@ -23,7 +23,7 @@ where $h_{ab}^{eff} = h_{ab} + \sum_{i}^{core} (2\braket{ai|bi}-\braket{ai|ib})$
 and $C$ is a constant to ensure that $H^D$ is equivalent to the full Hamiltonian within the CAS space.
 
 The zeroth order wave functions external to the CAS space are referred to as the ``perturber functions''. A perturber function is written  as $\ket{\Psi^{(k)}_{l,\mu}}$.
-It belongs to a CAS space is denoted $P_{S_l^{(k)}}$, where $k$ is the number of electrons promoted to ($k>0$) or removed from ($k<0$) the active space, $l$ denotes the occupancy of nonactive orbitals and$\mu$ enumerates the various perturber functions in $S_l^{(k)}$.  
+It belongs to a CAS space is denoted $P_{S_l^{(k)}}$, where $k$ is the number of electrons promoted to ($k>0$) or removed from ($k<0$) the active space, $l$ denotes the occupancy of nonactive orbitals and $\mu$ enumerates the various perturber functions in $S_l^{(k)}$.  
 In strongly contracted NEVPT2, only one perturber function for each $S_l^{(k)}$ subspace is used. The perturber function is defined as $\ket{\Psi^{(k)}_l} = S^{(k)}_l H \ket{\Psi^{(0)}}$, where $P_{S_l^{(k)}}$ is the projector onto the space. The energy of
 the perturber function is
 \begin{equation}
@@ -56,7 +56,7 @@ This is the approach taken, for example, in Kurashige and Yanai's original imple
 ~\cite{kurashige_second-order_2011}, where the auxiliary matrices can be computed with a cost scaling similar to that of the 3-RDM,
 using special kinds of DMRG renormalized operators as intermediates. However, the Dyall Hamiltonian in NEVPT2 
 involves all the active-space two-electron integrals, and this is more complicated to handle than the diagonal Fock energies that appear in the CASPT2 zeroth 
-Hamiltonian (in its canonical representation). Although the scaling of such an algorithm may be lower, it is complicated to implement
+Hamiltonian (in its canonical representation). Thus, \textcolor{red}{although the scaling of such an algorithm may be lower}, it is complicated to implement
 and the computational prefactor is large due to the many different intermediates that need to be considered. We have implemented
 such an algorithm only in our reference NEVPT2 code that uses CASCI type reference wavefunctions, and not in our DMRG-SC-NEVPT2 code.
 

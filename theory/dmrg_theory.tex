@@ -24,20 +24,20 @@ Similarly, the two-site MPS is defined as
 \end{equation}
 The only difference with the one-site MPS, is that one of the tensors (${\bf A}^{n_p n_{p+1}}$) is associated with two sites at a time. The two-site MPS thus
 has slightly more variational freedom than the one-site MPS, and further
-is different depending on which sites contain the special tensor.
+exists in different non-equivalent forms, depending on which sites are chosen for the special two-site tensor.
 
 %% This additional tensor, which
 %% would require two MPS tensors at positions $p$, $p+1$ to have bond dimension $4 M$ rather than $M$ if written in the one-site form, is useful
 %% during the numerical optimization of the MPS, as it provides information outside of the space strictly explored by MPS of bond dimension $M$ that
 %% can be used to help improve the convergence, or, to extrapolate the energy as a function of the discarded weight in the renormalization.
 
-In the DMRG sweep algorithm, $\bra{\Psi}H\ket{\Psi}$ is variationally optimized, and  a single tensor ($A^{n_i}$ for a one-site MPS or $A^{n_i, n_{i+1}}$ for a two-site MPS) is updated during the sweep at site $i$. This update leads to solving an eigenvalue problem of an effective ``superblock'' Hamiltonian, 
+In the DMRG sweep algorithm, $\bra{\Psi}H\ket{\Psi}/\braket{\Psi|\Psi}$ is variationally optimized, and  a single tensor ($\mathbf{A}^{n_i}$ in a one-site MPS or $\mathbf{A}^{n_i, n_{i+1}}$ in a  two-site MPS) is updated at site $i$ during the sweep. This update leads to solving an eigenvalue problem of an effective ``superblock'' Hamiltonian, 
 which is a $4M^2\times 4M^2$ matrix. 
 The multiplication between this effective Hamiltonian and a MPS is usually computed using $O(k^2)$ ``normal'' and ``complementary'' operators 
 built from different sets (blocks) of the active orbitals. The cost of this eigenvalue problem is $O(k^2M^3)$ for a single tensor update, and $O(k^3M^3)$ 
 for a whole sweep optimization. 
 
-As discussed, a two-site MPS has more variational freedom at the site where the special tensor is placed. This allows 
+As discussed, a two-site MPS has more variational freedom than a one-site MPS at the site where the special tensor is placed. This allows 
 the DMRG optimization to change quantum numbers, i.e. conserved local symmetries, during the sweep, and thus helps avoid local minima. Further,
 the discarded weight associated with the renormalization step in a two-site MPS sweep optimization can be used to extrapolate away the residual 
 error due to finite bond dimension $M$. 

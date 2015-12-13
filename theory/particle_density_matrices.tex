@@ -56,7 +56,7 @@ the appropriate contractions with the DMRG renormalized wavefunction.
 
 The type pattern is precisely defined as follows. Consider an RDM element $\langle {a}^\dagger_i{a}^\dagger_j\dots {a}_m{a}_n\dots \rangle$. 
 We reorder the indices such that the indices of the creation and annihilation operators are arranged successively in the order as they appear
-in the DMRG site ordering: $\hat{o}_{i'}o_{j'}\dots o_{m'}o_{n'}$, with $i'\le j'\le \dots \le m' \le n'$ and where $o$ is either $a$ or $a^\dagger$.
+in the DMRG site ordering: ${o}_{i'}o_{j'}\dots o_{m'}o_{n'}$, with $i'\le j'\le \dots \le m' \le n'$ and where $o$ is either $a$ or $a^\dagger$.
 The corresponding binary pattern of 2$N$ (where $N$ is the rank of the RDM) creation and annihilation operators appearing in the above operator string 
 is the type pattern of the RDM matrix element.
 
@@ -68,20 +68,20 @@ Recall that a DMRG sweep consists of a sequence of operations over the orbitals;
 orbitals preceding the current orbital (the system block ($\mathcal{S}$)), the current orbital (the dot block ($\mathcal{D}$)), and the set of orbitals whose
 associated site tensors have yet to be optimized (the environment block ($\mathcal{E}$)). 
 The intermediates in the construction of an RDM matrix element are DMRG renormalized operators  built and stored on the three blocks. 
-To determine the renormalized operators to build, we partition the $2N$ orbital labels of the operator $\hat{O}$ 
+To determine the renormalized operators to build, we partition the $2N$ orbital labels of the operator ${O}$ 
 among the 3 blocks. The most efficient partitioning (when generating
 the full set of RDM elements) is to compute a given element from renormalized operators with
 the maximum number of orbital labels appearing on the dot block, and an
 equal number of  orbital labels on the system and environment blocks. 
 For typical RDM elements (i.e. not for elements such as $\gamma_{0000}$), at least one orbital label can be placed on $D$ and at most $N-1$ orbital labels on $E$ by choosing an appropriate position of the dot site (i.e. the step in the DMRG sweep). 
 The numbers \{$n_S$,$n_D$,$n_E$\} then denote the numbers of orbital labels distributed on the different blocks, and this
-is the number pattern. One can generate all valid number patterns, by considering all cases where the number of orbital labels on $S$ is no more than $N$, that on $D$ is no more than 4 and that on $E$ is no more than $N-1$, and the total is $2N$ except for some edge cases for the first step and last step in the sweep, as discussed in the appendix.
-The number pattern and type pattern for a RDM element is illustrated in Fig. \ref{fig:operator_split}. 
+is the number pattern. One can generate all valid number patterns by considering all cases where the number of orbital labels on $S$ is no more than $N$, that on $D$ is no more than 4 and that on $E$ is no more than $N-1$, and the total is $2N$ except for some edge cases for the first step and last step in the sweep, as discussed in the appendix.
+The number pattern and type pattern for a representative RDM element is illustrated in Fig. \ref{fig:operator_split}. 
 
 
 \begin{figure}\label{fig:operator_split}
   \includegraphics[width=8cm]{operator_split.eps}
-  \caption{Evaluation of a three RDM element $\gamma_{137;159}$. $a_1^\dagger a_1 a^\dagger_3$ is on $S$, $a_5$ is on $D$, and $a^\dagger_7a^\dagger_9$ is on $E$. It belongs to (3,1,2) ``number pattern'' and ($a^\dagger a a^\dagger a a^\dagger a$) ``type pattern''.}
+  \caption{Evaluation of a three RDM element $\gamma_{137;159}$. $a_1^\dagger a_1 a^\dagger_3$ is on $S$, $a_5$ is on $D$, and $a^\dagger_7a^\dagger_9$ is on $E$. This elements belongs to the (3,1,2) ``number pattern'' and the ($a^\dagger a a^\dagger a a^\dagger a$) ``type pattern''.}
 \end{figure}
 
 %% There are three blocks in a DMRG sweep: the system block  algrithom.
@@ -102,9 +102,9 @@ This corresponds to the computation
 \begin{align}
 \gamma = \sum_{snes'n'e'} A^{n_i}_{se} p [O]^S_{ss'} [O]^D_{nn'} [O]^E_{ee'} A^{n'_i}_{s'e'} 
 \end{align}
-where the above tensor contraction is performed in stages (e.g. contracting $s$, $n$, $e$ indices separately) and intermediates like $\sum_{snes'n'e'}A^{n_i}_{se}[O]^S_{ss'}A^{n'_i}_{s'e'}$ are reused to minimize the computational cost,
+where the above tensor contraction is performed in stages (e.g. contracting $s$, $n$, $e$ indices separately) and intermediates such as $\sum_{snes'n'e'}A^{n_i}_{se}[O]^S_{ss'}A^{n'_i}_{s'e'}$ are reused to minimize the computational cost,
 and $p$ is a parity operation that inserts appropriate minus signs for fermions~\cite{chan_highly_2002}. 
-The total cost of this step for the N-RDM is $O(k^{N+1}M^3+k^{2N}M^2)$.
+With appropriate intermediates, the total cost of this step for an $N$-RDM computation is $O(k^{N+1}M^3+k^{2N}M^2)$.
 
 
 %% combine $\hat{O}^S$ and $\hat{O}^D$ into $O^L$ on the left block, $\mathcal{S}\otimes \mathcal{D}$. (Combining $\mathcal{E}$ and $\mathcal{D}$ only for RDM calcualtions is also feasible.) The $\mathcal{E}$ is the right block.
@@ -122,9 +122,11 @@ Through the above steps, an expectation value such as $\braket{{a}^\dagger_0{a}^
 For a non-spin-adapted DMRG algorithm, where $a^\dag, a$ are simple creation and annihilation operators, 
 we can then obtain $\gamma_{0132}$ by permuting $ {a}_2$ and ${a}_3$ with appropriate signs. For spin-adapted DMRG implementations, the $a^\dag, a$ 
 are spin tensor creation and annihilation operators, and
-$\braket{{a}^\dagger_0{a}^\dagger_1{a}_2{a}_3}$ is a reduced matrix element which generates multiple density matrix 
-values through the Wigner-Eckhart theorem.
- The elements generated correspond to $\braket{\{[({a}^\dagger_0{a}^\dagger_1)^{S_1}_{\mathcal{S}}({a}_2)_{\mathcal{D}}]^{S_2}({a}_3)_{\mathcal{E}}\}^{S_3}}$ with different spins $S_1$, $S_2$, $S_3$. The spin tensor creation and annihilation operators can be expanded as a linear combination of spin orbital creation
+$\braket{{a}^\dagger_0{a}^\dagger_1{a}_2{a}_3}$ \textcolor{red}{is instead an element such as
+$\braket{\{[({a}^\dagger_0{a}^\dagger_1)^{S_1}_{\mathcal{S}}({a}_2)_{\mathcal{D}}]^{S_2}({a}_3)_{\mathcal{E}}\}^{S_3}}$ with different spins $S_1$, $S_2$, $S_3$ and spin couplings. }
+%% a reduced matrix element which generates multiple spin-orbital density matrix 
+%% values through the Wigner-Eckart theorem.
+The spin tensor creation and annihilation operators can be expanded as a linear combination of spin orbital creation
 and annihilation operators, leading to a set of linear equations to obtain the spin orbital RDM elements from a single spin reduced matrix element. Using singlet embedding \cite{tatsuaki_interaction-round--face_2000, sharma_spin-adapted_2012}, expectation values for the spin tensor combinations with non-zero total spin are zero, significantly decreasing the number of 
 expectation values to compute. The coefficients appearing in the linear equations are the same for all operators with the same pattern and can thus be generated 
 automatically and reused. The cost of this process is independent of the DMRG bond dimension $M$, and is thus negligible compared to the other parts of the RDM calculation.

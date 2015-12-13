@@ -1,16 +1,17 @@
 
 \section{Conclusion}
 
-In this work, we described an efficient and general algorithm to compute high order RDM's from a DMRG wave function.
+In this work we described an efficient and general algorithm to compute high order RDM's from a DMRG wave function.
 These RDM's may be used as the starting point for many kinds of internally contracted dynamic correlation methods.
 Using up to the 4th order RDM, we combined DMRG and strongly contracted NEVPT2 to obtain
 an intruder state free second order multireference perturbation theory that can be used with large active spaces.
 
 To demonstrate the capability of the DMRG-SC-NEVPT2 method, we calculated the potential energy curve of the chromium dimer and the excited 
-states of PPV3. For the chromium dimer, the extended active space included $4d$ orbitals and the so called ``double d'' shell.
+states of PPV3. For the chromium dimer, the best extended active space included the so called ``double d'' shell.
 Our obtained curve compares quite favourably with earlier calculations and tracks the experimental curve very closely, except
-at very bond-lengths where the experimental inversion may be suspect.
+at very long bond-lengths where the experimental inversion may be suspect. We find that the semi-core orbitals
+are much less important for an accurate description of this curve.
 For PPV3, using an active space containing the full set of $\pi, \pi^*$ orbitals, we found that the dynamic correlation included through NEVPT2 allowed us to obtain
-a reasonable ordering of the low-lying excited states, and the lowest excitation energy in good agreement with
+a correct ordering of the low-lying excited states, and the lowest excitation energy is in good agreement with
 the experimental data. In summary, these examples paint an optimistic picture for the potential of applying the
-DMRG-SC-NEVPT2 methodology to a wide range of challenging problems.
+DMRG-SC-NEVPT2 method developed here to a wide range of challenging problems.

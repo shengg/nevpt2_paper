@@ -1,41 +1,54 @@
 
 \section{Introduction}
 
-In manly non-trivial quantum chemistry applications, such as excited states, non-equilibrium geometries and transition-metal compounds, the methods based on mean-field electron interaction cannot even give qualitative descriptions. 
-The deviation from mean-field electron interation, called electron correlation, is usually split into two parts: static or non-dynamic correlation and dynamic correlation.
-Static correlation is among the near-degenerate orbitals and can be effectively treated by allowing all possible distribution of electrons in these near-degenerate orbtals (active orbitals).  
-One of the models based on active orbitals is complete active space self-consistent field (CASSCF) method. Dynamic correlation usually does not make as strong influences on electronic structure as the static correlation does. Dynamic correlation can be effectively discribed by low-level theories, such as perturbation theories (PT), configuration interaction singles (CISD)  and doubles or coupled cluster theory (CC). If dynamic correlation and static correlation are both needed, such as the determination of energy order of excited states in conjugated molecules or transition metal compounds, the multi-reference (MR) versions of the theories mentioned above are needed. They are called multi-reference perturbation theories (MRPT)\cite{andersson_second-order_1990}, multi-reference configuration interaction (MRCI)\cite{buenker_individualized_1974} or multi-reference coupled clusters theories (MRCC) \cite{oliphant_multireference_1991}.
+In many quantum chemistry applications, such as to excited states, non-equilibrium geometries,
+and transition-metal chemistry, the mean-field description of electron interactions is insufficient. 
+The deviation from mean-field behaviour of the electrons, i.e. electron correlation, is usually classified
+into two types: static or non-dynamic correlation, and dynamic correlation.
+Conventionally, static correlation is the correlation between near-degenerate valence orbitals, and can be treated by
+considering the set of possible configurations of electrons in the set of active valence orbitals.
+If all such configurations are included and the orbitals are simultaneously optimized, one arrives at the complete active space
+self-consistent-field (CASSCF) model, the most widely used method to describe static correlation.
+Dynamic correlation is the correlation between valence orbitals and the remaining empty (virtual) or doubly occupied (core) states.
+This effect is thought of
+as captured by low particle-rank excitations, such as used in
+perturbation theories (PT), configuration interaction singles  and doubles  (CISD), or coupled cluster theory (CC).
+The combined treatment of static and dynamic correlation is the domain of multireference correlation theories, such as
+multi-reference perturbation theories (MRPT)\cite{andersson_second-order_1990}, multi-reference configuration interaction (MRCI)\cite{buenker_individualized_1974} or multi-reference coupled cluster theories (MRCC) \cite{oliphant_multireference_1991}.
 
-In CASSCF and MR methods (MRPT, MRCI and MRCC) based on CASSCF wave functions, static correlation within the active orbitals is solved exactly through the full configuration interaction (FCI). The exponential increasing of computations of FCI limits the number of active orbitals. The density matrix renormalization group (DMRG) \cite{white_density_1992,white_density-matrix_1993, ostlund_thermodynamic_1995, rommer_class_1997, schollwock_density-matrix_2005, schollwock_density-matrix_2011} has made it possible to employ large active spaces 
-for electronic structure problems in quantum chemistry.\cite{white_ab_1999, chan_highly_2002, legeza_controlling_2003,moritz_decomposition_2007, verstraete_matrix_2008, marti_density_2008, zgid_spin_2008, marti_density_2010, kurashige_high-performance_2009, luo_optimizing_2010, chan_density_2011, marti_new_2011, sharma_spin-adapted_2012, wouters_longitudinal_2012, wouters_thouless_2013, kurashige_entangled_2013, wouters_communication:_2014} It has become straightforward to use DMRG as a robust numerical solver for 
-static electron correlation problems. Examples of applications include benchmark solutions of small molecules\cite{chan_highly_2002,legeza_controlling_2003,luo_optimizing_2010, olivares-amaya_ab-initio_2015}, multi-center transition metal clusters\cite{kurashige_high-performance_2009,marti_new_2011, kurashige_entangled_2013, sharma_low-energy_2014}, as well as molecular crystals\cite{yang_ab_2014}. It is a good alternative of FCI.
-
-There were also several attempts to add dynamic correlation on the top of DMRG ansatz.
-For example, DMRG-CT~\cite{neuscamman_review_2010}, DMRG-CASPT2 ~\cite{kurashige_second-order_2011}, DMRG-cu(4)-MRCI ~\cite{saitow_fully_2015} in the internal-contraction(IC) framework and MPS-PT~\cite{sharma_communication:_2014}, MPS-LCC ~\cite{sharma_multireference_2015} in fully uncontracted framework.
+%% In CASSCF and MR methods (MRPT, MRCI and MRCC) based on CASSCF wave functions, static correlation within the active orbitals is solved exactly through the full configuration interaction (FCI). The exponential increasing of computations of FCI limits the number of active orbitals. 
+The density matrix renormalization group (DMRG) \cite{white_density_1992,white_density-matrix_1993, ostlund_thermodynamic_1995, rommer_class_1997, schollwock_density-matrix_2005, schollwock_density-matrix_2011} has made it possible to employ  large active spaces 
+to describe static correlation\cite{white_ab_1999, chan_highly_2002, legeza_controlling_2003,moritz_decomposition_2007, verstraete_matrix_2008, marti_density_2008, zgid_spin_2008, marti_density_2010, kurashige_high-performance_2009, luo_optimizing_2010, chan_density_2011, marti_new_2011, sharma_spin-adapted_2012, wouters_longitudinal_2012, wouters_thouless_2013, kurashige_entangled_2013, wouters_communication:_2014} and it has become straightforward to
+use the DMRG as a robust numerical solver in a variety of frontier applications, including benchmark solutions of small molecules\cite{chan_highly_2002,legeza_controlling_2003,luo_optimizing_2010, olivares-amaya_ab-initio_2015}, multi-center transition metal clusters\cite{kurashige_high-performance_2009,marti_new_2011, kurashige_entangled_2013, sharma_low-energy_2014}, as well as to molecular crystals\cite{yang_ab_2014}. There have been several
+efforts to further include dynamic correlation on top of the DMRG reference.
+For example, DMRG-CT~\cite{neuscamman_review_2010}, DMRG-CASPT2 ~\cite{kurashige_second-order_2011}, DMRG-cu(4)-MRCI ~\cite{saitow_fully_2015} (in an internally contracted (IC) formulation) and MPS-PT~\cite{sharma_communication:_2014} and MPS-LCC ~\cite{sharma_multireference_2015} (in an uncontracted
+formulation) 
+are all attempts in this direction. \textcolor{red}{There have also been efforts to combine DMRG with DFT~\cite{reiher_dmrg}.}
 %On the other hand, dynamic electron correlation is crucial in chemical dynamic processes, which in general involves electron correlation dynamics within a large range of orbitals. 
 %% The DMRG method has been embedded with the second-order perturbation theory
 %% complete active space perturbation theory (CASPT), and canonical transformation(CT)\cite{neuscamman_review_2010}, etc., to be extended for dynamic correlation. 
-In internal-contraction methods, high order reduced density matrices of the DMRG active space wavefunction are required. Such density matrices 
-are simple objects in a theoretical sense, but are computationally non-trivial to obtain.
+In the internally contracted multireference methods, high order reduced density matrices (RDM) of the DMRG active space wavefunction are required.
+Such density matrices, although simple in a theoretical sense, are computationally non-trivial to obtain.
 
-In this work, we have developed a general algorithm to efficiently compute high order reduced density matrix (RDM) from DMRG wave functions. 
+In this work, we have developed a general algorithm to efficiently compute high order reduced density matrices from DMRG wave functions. 
 Using these RDM calculations, we may then implement a variety of methods to treat electron correlation external to the DMRG active space.
-An example of this, we have implemented the second order $N$-electron valence state perturbation theory (NEVPT2) 
-\cite{angeli_introduction_2001,angeli_n-electron_2001, angeli_n-electron_2002}, an intruder-state-free multireference perturbation theory in its strongly-contracted variant, on top
-of the DMRG reference wavefunction, a method we call DMRG-SC-NEVPT2.
-To demonstrate the potential of this approach, we apply this method to study the potential energy curve of the chromium dimer, and 
+As an example of this, we have implemented the strongly contracted variant of second order $N$-electron valence state perturbation theory (NEVPT2) 
+\cite{angeli_introduction_2001,angeli_n-electron_2001, angeli_n-electron_2002}, an intruder-state-free multireference perturbation theory, on top
+of the DMRG reference wavefunction, to yield a method we call DMRG-SC-NEVPT2.
+To demonstrate the potential of this approach, we apply the method to study the potential energy curve of the chromium dimer, and 
 to compute the excitation energies of the quasi-one dimensional conjugated poly(p-phenylene vinylene) (PPV). 
-The chromium dimer is a particularly demanding small molecule that has been widely studied with many methods\cite{roos_ground_2003,celani_cipt2_2004,angeli_third-order_2006,muller_large-scale_2009,kurashige_second-order_2011,ruiperez_complete_2011,kurashige_multireference_2014,sharma_multireference_2015}, and thus forms a good test bed to demonstrate the performance of DMRG-SC-NEVPT2. Using an active space with 22 orbitals and basis sets extrapolated to the CBS limit, we show that we can
+The chromium dimer is a particularly demanding small molecule that has been widely studied with many techniques\cite{roos_ground_2003,celani_cipt2_2004,angeli_third-order_2006,muller_large-scale_2009,kurashige_second-order_2011,ruiperez_complete_2011,kurashige_multireference_2014,sharma_multireference_2015}, and thus forms a good test bed to demonstrate the performance of DMRG-SC-NEVPT2. Using an active space with 22 orbitals and basis sets extrapolated to the CBS limit, we show that we can
 compute both the spectroscopic constants and the full curve,
 with an accuracy that compares quite favourably to earlier calculations.
-PPV is of interest as the prototypical light-emitting polymer\cite{burroughes_light-emitting_1990,friend_electroluminescence_1999}. This property relies
+PPV on the other hand, is of interest as a prototypical light-emitting polymer\cite{burroughes_light-emitting_1990,friend_electroluminescence_1999}.
+Light emission relies
 on the correct ordering of the first optically bright $1^{1}B_{u}$ state
-and  dark $2^{1}A_{g}$ state, which requires an appropriate
-description of electron correlation~\cite{beljonne_theoretical_1995,lavrentiev_theoretical_1999,shukla_correlated_2002, han_time-dependent_2004, saha_investigation_2007, bursill_symmetry-adapted_2009}.
+and  dark $2^{1}A_{g}$ state, and describing this ordering requires an appropriate
+treatment of electron correlation~\cite{beljonne_theoretical_1995,lavrentiev_theoretical_1999,shukla_correlated_2002, han_time-dependent_2004, saha_investigation_2007, bursill_symmetry-adapted_2009}.
 %% The first  whose polaronic feature is suggested to be 
 %% responsible for the charge-transfer behavior, is estimated to lie below the  with a small gap of 0.7eV\cite{martin_linear_1999}. 
 %% While many theoretical studies of PPV have used model Hamiltonians, such as the  Pariser\textendash Parr\textendash Pople (PPP) model, \cite{shukla_correlated_2002, bursill_symmetry-adapted_2009} or other semi-empirical  methods \cite{beljonne_theoretical_1995} due to the large system size, 
 With DMRG-SC-NEVPT2, we show that we can compute the excitation 
-energies and energy ordering of the different states accurately starting 
+energies and energy ordering of the different states accurately, starting 
 from the full-valence active $\pi$ space of the molecule.
 
