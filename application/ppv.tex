@@ -20,7 +20,7 @@ to a smaller bond dimension of $M'$=500 and 750. The difference in excitation en
 in the DMRG-SC-NEVPT2 calculation was less than $0.6 meV$ (Table~\ref{table:local}), and thus the error from incomplete $M'$ can
 effectively be ignored.
 The excitation energy of the first bright state as computed by DMRG-SC-NEVPT2 ($3.86 eV$) now agrees well with
-\textcolor{red}{the experimental number from fluorescence in XXX solvent ($3.69 eV$)}~\cite{gierschner_fluorescence_2002} (Table~\ref{table:compare}) and the first bright ($B_u$ state) is found to lie below the $2A_g$ state, as required for efficient light emission. We also find a second $B_u$ state slightly
+the experimental number from fluorescence in vacuo by extrapolation the linear fits to $n_{solv}=1$ ($3.69 eV$)~\cite{gierschner_fluorescence_2002} (Table~\ref{table:compare}) and the first bright ($B_u$ state) is found to lie below the $2A_g$ state, as required for efficient light emission. We also find a second $B_u$ state slightly
 below the $2A_g$ state in energy. The electronic signatures of the states are shown in Table~\ref{table:local}.
 
 \begin{table}
@@ -46,8 +46,8 @@ $2^1A_g$ & 4.66   &4.06\footref{fn:dmrg_1999}, 4.618\footref{fn:dmrg_2009}& & \\
   \centering
   \caption{Excitation energy (eV) calculated from DMRG-SC-NEVPT2 ($M'$=500, 750) with localized orbitals.
     Excitations energies of DMRG-CI ($M$=3200) also shown for comparison. The transition signatures are calculated from the
-    DMRG-CI wave function with $M$=750. The excitation coefficient of the transition $i\rightarrow j$ ($i,j \rightarrow k,l$) is given by $\bra{\Psi}a^\dagger_j a_i\ket{1^1A_g}$ ( $\bra{\Psi}a^\dagger_l a^\dagger_k a_j a_i\ket{1^1A_g}$).
-The transition labels $n\rightarrow m'$ are as follows: 1, 2, 3 \ldots denote HOMO, HOMO-1, HOMO-2 \ldots canonical orbitals, while $1'$, $2'$, $3'$ \ldots denote LUMO, LUMO+1,LUMO+2 canonical orbitals. \textcolor{red}{2 d.p. sufficient!}}
+    DMRG-CI wave function with $M$=750. The excitation coefficient of the transition $i\rightarrow j$ ($i,j \rightarrow k,l$) is given by $\frac{1}{\sqrt{2}}\bra{\Psi}a^\dagger_j a_i\ket{1^1A_g}$ ( $\frac{1}{2}\bra{\Psi}a^\dagger_l a^\dagger_k a_j a_i\ket{1^1A_g}$).
+The transition labels $n\rightarrow m'$ are as follows: 1, 2, 3 \ldots denote HOMO, HOMO-1, HOMO-2 \ldots canonical orbitals, while $1'$, $2'$, $3'$ \ldots denote LUMO, LUMO+1,LUMO+2 canonical orbitals. }
   \label{table:local}
   \begin{tabular}{ccccc}
     \hline
@@ -55,12 +55,12 @@ The transition labels $n\rightarrow m'$ are as follows: 1, 2, 3 \ldots denote HO
 symmetry & excitation signature &  $M'$=500 & $M'$=750 & DMRG-CI($M$=3200) \\
 
 \hline
-$1^1B_u$ & $(1\rightarrow1')$ & 3.8628   &   3.8625   & 5.1311 \\
-  $2^1B_u$ & 0.71 ($5\rightarrow 1'$) + 0.66 (1$\rightarrow 3'$) & 4.4980   &   4.4978   & 4.4952    \\
-  $2^1A_g$ & 0.49 ($2\rightarrow 1'$) + 0.42 (1$\rightarrow 2'$) & 4.6634   &   4.6634   & 4.8454    \\
+  $1^1B_u$ & 0.83 ($1\rightarrow1')$ & 3.86   &   3.86   & 5.13 \\
+  $2^1B_u$ & 0.51 ($5\rightarrow 1'$) + 0.47 (1$\rightarrow 3'$) & 4.50   &   4.50   & 4.50    \\
+  $2^1A_g$ & 0.35 ($2\rightarrow 1'$) + 0.30 (1$\rightarrow 2'$) & 4.66   &   4.66   & 4.85    \\
   &   + 0.47 ($1,1\rightarrow1',1'$)  & & &\\
-  $3^1B_u$ & many terms & 4.8268   &   4.8262   & 4.7541    \\
-  $4^1B_u$ & many terms & 4.8441   &   4.8443   & 4.7571    \\
+  $3^1B_u$ & many singly excited terms & 4.83   &   4.83   & 4.75    \\
+  $4^1B_u$ & many singly excited terms & 4.84   &   4.84   & 4.76    \\
 \hline
 \hline
 \end{tabular}
