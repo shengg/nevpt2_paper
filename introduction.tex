@@ -8,22 +8,22 @@ into two types: static or non-dynamic correlation, and dynamic correlation.
 Conventionally, static correlation is the correlation between near-degenerate valence orbitals, and can be treated by
 considering the set of possible configurations of electrons in the set of active valence orbitals.
 If all such configurations are included and the orbitals are simultaneously optimized, one arrives at the complete active space
-self-consistent-field (CASSCF) model, the most widely used method to describe static correlation.
+self-consistent-field (CASSCF) model\cite{das1972new, werner1980quadratically, werner1985second}, the most widely used method to describe static correlation.
 Dynamic correlation is the correlation between valence orbitals and the remaining empty (virtual) or doubly occupied (core) states.
 This effect is thought of
 as captured by low particle-rank excitations, such as used in
-perturbation theories (PT), configuration interaction singles  and doubles  (CISD), or coupled cluster theory (CC).
+perturbation theories (PT)\cite{bartlett1978many}, configuration interaction singles and doubles (CISD)\cite{shavitt1977method, purvis1982full}, or coupled cluster theory (CC)\cite{coester1958bound, taylor1978unlinked, bartlett1978many, pople1978electron, chiles1981electron, bartlett1989coupled}.
 The combined treatment of static and dynamic correlation is the domain of multireference correlation theories, such as
-multi-reference perturbation theories (MRPT)\cite{andersson_second-order_1990}, multi-reference configuration interaction (MRCI)\cite{buenker_individualized_1974} or multi-reference coupled cluster theories (MRCC) \cite{oliphant_multireference_1991}.
+multi-reference perturbation theories (MRPT)~\cite{andersson_second-order_1990}, multi-reference configuration interaction (MRCI)~\cite{lischka1981new, szalay2011multiconfiguration, lischka2001high} or multi-reference coupled cluster theories (MRCC)~\cite{buenker_individualized_1974, lindgren1978coupled, mukherjee1986linked, rittby1989multireference, stanton1992fock, kucharski1991hilbert, oliphant_multireference_1991}.
 
 %% In CASSCF and MR methods (MRPT, MRCI and MRCC) based on CASSCF wave functions, static correlation within the active orbitals is solved exactly through the full configuration interaction (FCI). The exponential increasing of computations of FCI limits the number of active orbitals. 
-The density matrix renormalization group (DMRG) \cite{white_density_1992,white_density-matrix_1993, ostlund_thermodynamic_1995, rommer_class_1997, schollwock_density-matrix_2005, schollwock_density-matrix_2011} has made it possible to employ  large active spaces 
-to describe static correlation\cite{white_ab_1999, chan_highly_2002, legeza_controlling_2003,moritz_decomposition_2007, verstraete_matrix_2008, marti_density_2008, zgid_spin_2008, marti_density_2010, kurashige_high-performance_2009, luo_optimizing_2010, chan_density_2011, marti_new_2011, sharma_spin-adapted_2012, wouters_longitudinal_2012, wouters_thouless_2013, kurashige_entangled_2013, wouters_communication:_2014} and it has become straightforward to
-use the DMRG as a robust numerical solver in a variety of frontier applications, including benchmark solutions of small molecules\cite{chan_highly_2002,legeza_controlling_2003,luo_optimizing_2010, olivares-amaya_ab-initio_2015}, multi-center transition metal clusters\cite{kurashige_high-performance_2009,marti_new_2011, kurashige_entangled_2013, sharma_low-energy_2014}, as well as to molecular crystals\cite{yang_ab_2014}. There have been several
+The density matrix renormalization group (DMRG) \cite{white_density_1992, white_density-matrix_1993, ostlund_thermodynamic_1995, rommer_class_1997, white_ab_1999, Mitrushenkov2001, chan_highly_2002, legeza_controlling_2003, Legeza2003, legeza2003optimizing, legeza2004quantum, Chan2004, moritz2005convergence, moritz2005relativistic, rissler2006measuring, Zgid2009, legeza2008applications, Reiher2010review, Chan2011, schollwock_density-matrix_2005, schollwock_density-matrix_2011} has made it possible to employ large active spaces 
+to describe static correlation\cite{white_ab_1999, chan_highly_2002, legeza_controlling_2003, moritz_decomposition_2007, verstraete_matrix_2008, marti_density_2008, zgid_spin_2008, marti_density_2010, kurashige_high-performance_2009, luo_optimizing_2010, chan_density_2011, marti_new_2011, sharma_spin-adapted_2012, wouters_longitudinal_2012, wouters_thouless_2013, kurashige_entangled_2013, wouters_communication:_2014} and it has become straightforward to
+use the DMRG as a robust numerical solver in a variety of frontier applications, including benchmark solutions of small molecules\cite{chan_highly_2002, legeza_controlling_2003, luo_optimizing_2010, olivares-amaya_ab-initio_2015}, multi-center transition metal clusters\cite{kurashige_high-performance_2009, marti_new_2011, kurashige_entangled_2013, sharma_low-energy_2014}, as well as to molecular crystals\cite{yang_ab_2014}. There have been several
 efforts to further include dynamic correlation on top of the DMRG reference.
-For example, DMRG-CT~\cite{neuscamman_review_2010}, DMRG-CASPT2 ~\cite{kurashige_second-order_2011}, DMRG-cu(4)-MRCI ~\cite{saitow_fully_2015} (in an internally contracted (IC) formulation) and MPS-PT~\cite{sharma_communication:_2014} and MPS-LCC ~\cite{sharma_multireference_2015} (in an uncontracted
+For example, DMRG-CT~\cite{neuscamman_review_2010, Yanai2010}, DMRG-CASPT2 ~\cite{kurashige_second-order_2011}, DMRG-cu(4)-MRCI ~\cite{saitow_fully_2015} (in an internally contracted (IC) formulation) and MPS-PT~\cite{sharma_communication:_2014} and MPS-LCC ~\cite{sharma_multireference_2015} (in an uncontracted
 formulation) 
-are all attempts in this direction. There have also been efforts to combine DMRG with DFT~\cite{reiher_density_2015}.
+are all attempts in this direction. There have also been efforts to combine DMRG with density functional theory (DFT) ~\cite{reiher_density_2015}.
 %On the other hand, dynamic electron correlation is crucial in chemical dynamic processes, which in general involves electron correlation dynamics within a large range of orbitals. 
 %% The DMRG method has been embedded with the second-order perturbation theory
 %% complete active space perturbation theory (CASPT), and canonical transformation(CT)\cite{neuscamman_review_2010}, etc., to be extended for dynamic correlation. 
@@ -37,10 +37,10 @@ As an example of this, we have implemented the strongly contracted variant of se
 of the DMRG reference wavefunction, to yield a method we call DMRG-SC-NEVPT2.
 To demonstrate the potential of this approach, we apply the method to study the potential energy curve of the chromium dimer, and 
 to compute the excitation energies of the quasi-one dimensional conjugated poly(p-phenylene vinylene) (PPV). 
-The chromium dimer is a particularly demanding small molecule that has been widely studied with many techniques\cite{roos_ground_2003,celani_cipt2_2004,angeli_third-order_2006,muller_large-scale_2009,kurashige_second-order_2011,ruiperez_complete_2011,kurashige_multireference_2014,sharma_multireference_2015}, and thus forms a good test bed to demonstrate the performance of DMRG-SC-NEVPT2. Using an active space with 22 orbitals and basis sets extrapolated to the CBS limit, we show that we can
+The chromium dimer is a particularly demanding small molecule that has been widely studied with many techniques\cite{roos_ground_2003,celani_cipt2_2004,angeli_third-order_2006,muller_large-scale_2009,kurashige_second-order_2011,ruiperez_complete_2011,kurashige_multireference_2014,sharma_multireference_2015}, and thus forms a good test bed to demonstrate the performance of DMRG-SC-NEVPT2. Using an active space with 22 orbitals and basis sets extrapolated to the complete basis set (CBS) limit, we show that we can
 compute both the spectroscopic constants and the full curve,
 with an accuracy that compares quite favourably to earlier calculations.
-PPV on the other hand, is of interest as a prototypical light-emitting polymer\cite{burroughes_light-emitting_1990,friend_electroluminescence_1999}.
+PPV on the other hand, is of interest as a prototypical light-emitting polymer\cite{burroughes_light-emitting_1990,friend_electroluminescence_1999, barford_book}.
 Light emission relies
 on the correct ordering of the first optically bright $1^{1}B_{u}$ state
 and  dark $2^{1}A_{g}$ state, and describing this ordering requires an appropriate

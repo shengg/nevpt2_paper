@@ -1,15 +1,15 @@
 \subsection{Poly(p-phenylene vinylene)}
 
 Poly(p-phenylene vinylene) is a well-known light emitting conjugated polymer. It has several low-lying states that participate in its photophysics 
-and has been extensively investigated with many theoretical methods, for example various semi-empirical methods~\cite{beljonne_theoretical_1995}, DMRG based on the Pariser-Parr-Pople (PPP) model Hamiltonian~\cite{lavrentiev_theoretical_1999,shukla_correlated_2002,bursill_symmetry-adapted_2009}, time-dependent density functional theory~\cite{han_time-dependent_2004} and symmetry-adapted cluster configuration interaction (SAC-CI)~\cite{saha_investigation_2007}. 
+and has been extensively investigated with many theoretical methods, for example various semi-empirical methods~\cite{beljonne_theoretical_1995}, DMRG based on the Pariser-Parr-Pople (PPP) model Hamiltonian~\cite{lavrentiev_theoretical_1999, shukla_correlated_2002,bursill_symmetry-adapted_2009}, time-dependent density functional theory~\cite{han_time-dependent_2004} and symmetry-adapted cluster configuration interaction (SAC-CI)~\cite{saha_investigation_2007}. 
 Here we examine the excited states and their energies using DMRG-SC-NEVPT2.
 We limit our calculations to PPV3 (three phenyl rings) to demonstrate the capabilities of DMRG-SC-NEVPT2 for low-lying excited states in conjugated molecules.
 
-The cc-pVDZ basis set and a (22e,22o) active space containing the 22 conjugated $\pi, \pi^*$ orbitals were used. The ground state equilibrium geometry of PPV3 was obtained via DMRG-CI geometry optimization\cite{hu_excited-state_2015}, which is implemented within an interface between \textsc{Block} and \textsc{ORCA}\cite{neese_orca_2012}, starting from the DFT/B3LYP optimized geometry. The DMRG-CI geometry optimization was first run at $M$=1000, and near convergence with $M$=2000. Canonical Hartree-Fock orbitals were used 
+The cc-pVDZ basis set~\cite{dunning1989gaussian} and a (22$e$, 22$o$) active space containing the 22 conjugated $\pi, \pi^*$ orbitals were used. The ground state equilibrium geometry of PPV3 was obtained via DMRG-CI geometry optimization~\cite{hu_excited-state_2015}, which is implemented within an interface between \textsc{Block} and \textsc{ORCA}\cite{neese_orca_2012}, starting from the DFT/B3LYP optimized geometry. The DMRG-CI geometry optimization was first run at $M$ = 1000, and near convergence with $M$ = 2000. Canonical Hartree-Fock orbitals were used 
 in the DMRG calculations in the geometry optimization.
 %For the first optically bright state, we also started from the DFT guess ground state geometry.
 
-Compared to canonical orbitals, localized orbitals usually give better convergence in DMRG calculations.~\cite{olivares-amaya_ab-initio_2015} Therefore, further state-averaged DMRG-CI calculations were carried out for the 6 lowest singlet states, using split-localized orbitals (where the occupied and unoccupied $\pi$, $\pi*$ orbitals are separately localized with the Pipek-Mezey method\cite{pipek_fast_1989}). The energies were converged to $0.2mEh$ with a bond dimension of $M$=$3200$. The excited states were identified according to their excitation signature from the ground state through the transition 1-RDM and 2-RDM
+Compared to canonical orbitals, localized orbitals usually give better convergence in DMRG calculations.~\cite{olivares-amaya_ab-initio_2015} Therefore, further state-averaged DMRG-CI calculations were carried out for the 6 lowest singlet states, using split-localized orbitals (where the occupied and unoccupied $\pi$, $\pi*$ orbitals are separately localized with the Pipek-Mezey method~\cite{pipek_fast_1989}). The energies were converged to $0.2mEh$ with a bond dimension of $M$ = 3200. The excited states were identified according to their excitation signature from the ground state through the transition 1-RDM and 2-RDM
 in the canonical Hartree-Fock basis. The symmetry of the states was also determined by the excitation signature: as the ground-state
  is an $A_g$ state, excitations between two orbitals of different symmetries lead to a $B_u$ excited state, and excitations between two orbitals of the same symmetry lead to an $A_g$ state.
 
@@ -24,7 +24,7 @@ the experimental number from fluorescence in vacuo by extrapolation the linear f
 below the $2A_g$ state in energy. The electronic signatures of the states are shown in Table~\ref{table:local}.
 
 \begin{table}
-\caption{Vertical excitation energies of PPV-3 in vacuum from different methods.}
+\caption{Vertical excitation energies of PPV3 in vacuum from different methods.}
 \label{table:compare}
 \begin{tabular}{ccccc}
   \hline
@@ -46,7 +46,7 @@ $2^1A_g$ & 4.66   &4.06\footref{fn:dmrg_1999}, 4.618\footref{fn:dmrg_2009}& & \\
   \centering
   \caption{Excitation energy (eV) calculated from DMRG-SC-NEVPT2 ($M'$=500, 750) with localized orbitals.
     Excitations energies of DMRG-CI ($M$=3200) also shown for comparison. The transition signatures are calculated from the
-    DMRG-CI wave function with $M$=750. The excitation coefficient of the transition $i\rightarrow j$ ($i,j \rightarrow k,l$) is given by $\frac{1}{\sqrt{2}}\bra{\Psi}a^\dagger_j a_i\ket{1^1A_g}$ ( $\frac{1}{2}\bra{\Psi}a^\dagger_l a^\dagger_k a_j a_i\ket{1^1A_g}$).
+    DMRG-CI wave function with $M$ = 3200. The excitation coefficient of the transition $i\rightarrow j$ ($i,j \rightarrow k,l$) is given by $\frac{1}{\sqrt{2}}\bra{\Psi}a^\dagger_j a_i\ket{1^1A_g}$ ( $\frac{1}{2}\bra{\Psi}a^\dagger_l a^\dagger_k a_j a_i\ket{1^1A_g}$).
 The transition labels $n\rightarrow m'$ are as follows: 1, 2, 3 \ldots denote HOMO, HOMO-1, HOMO-2 \ldots canonical orbitals, while $1'$, $2'$, $3'$ \ldots denote LUMO, LUMO+1,LUMO+2 canonical orbitals. }
   \label{table:local}
   \begin{tabular}{ccccc}
