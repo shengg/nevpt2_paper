@@ -65,8 +65,8 @@ The number pattern encodes how to partition the labels of the expectation value 
 %% We call it ``type pattern''. 
 %% Then the string is split into several small pieces according to blocks (orbital subgroups) in DMRG sweep. 
 Recall that a DMRG sweep consists of a sequence of operations over the orbitals; at each step in the DMRG sweep, there is the set of
-orbitals preceding the current orbital (the system block ($\mathcal{S}$)), the current orbital (the dot block ($\mathcal{D}$)), and the set of orbitals whose
-associated site tensors have yet to be optimized (the environment block ($\mathcal{E}$)). 
+orbitals preceding the current orbital (the system block (${S}$)), the current orbital (the dot block (${D}$)), and the set of orbitals whose
+associated site tensors have yet to be optimized (the environment block (${E}$)). 
 The intermediates in the construction of an RDM matrix element are DMRG renormalized operators  built and stored on the three blocks. 
 To determine the renormalized operators to build, we partition the $2N$ orbital labels of the operator ${O}$ 
 among the 3 blocks. The most efficient partitioning (when generating
@@ -79,9 +79,9 @@ is the number pattern. One can generate all valid number patterns by considering
 The number pattern and type pattern for a representative RDM element is illustrated in Fig. \ref{fig:operator_split}. 
 
 
-\begin{figure}\label{fig:operator_split}
+\begin{figure}
   \includegraphics[width=8cm]{operator_split.eps}
-  \caption{Evaluation of a three RDM element $\gamma_{137;159}$. $a_1^\dagger a_1 a^\dagger_3$ is on $S$, $a_5$ is on $D$, and $a^\dagger_7a^\dagger_9$ is on $E$. This elements belongs to the (3,1,2) ``number pattern'' and the ($a^\dagger a a^\dagger a a^\dagger a$) ``type pattern''.}
+  \caption{\label{fig:operator_split} Evaluation of a three RDM element $\gamma_{137;159}$. $a_1^\dagger a_1 a^\dagger_3$ is on $S$, $a_5$ is on $D$, and $a^\dagger_7a^\dagger_9$ is on $E$. This elements belongs to the (3,1,2) ``number pattern'' and the ($a^\dagger a a^\dagger a a^\dagger a$) ``type pattern''.}
 \end{figure}
 
 %% There are three blocks in a DMRG sweep: the system block  algrithom.

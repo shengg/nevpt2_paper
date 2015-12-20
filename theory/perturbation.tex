@@ -8,11 +8,11 @@ P_{CAS}HP_{CAS} \ket{\Psi^{(0)}} = E^{(0)} \ket{\Psi^{(0)}}
 where $P_{CAS}$ is the projector onto the CAS space. 
 The zeroth order Hamiltonian is chosen in the form given by Dyall\cite{dyall_choice_1995}:
 \begin{equation}
-  H^D = H_i + H_v + C
+  H^D = H_c + H_v + C
 \end{equation}
-where $H_i$ is a one-electron (diagonal) operator in the non-active (core and external) subspace:
+where $H_c$ is a one-electron (diagonal) operator in the non-active (core and external) subspace:
 \begin{equation}
-  H_i = \sum_{i,\sigma}^{core} \epsilon_i  a^\dagger_{i,\sigma} a_{i,\sigma} + \sum_{r,\sigma}^{virt} \epsilon_r  a^\dagger_{r,\sigma} a_{r,\sigma}
+  H_c = \sum_{i,\sigma}^{core} \epsilon_i  a^\dagger_{i,\sigma} a_{i,\sigma} + \sum_{r,\sigma}^{virt} \epsilon_r  a^\dagger_{r,\sigma} a_{r,\sigma}
 \end{equation}
 and $\epsilon_i $ and $\epsilon_r$ are orbital energies; 
 $H_v$ is a two-electron operator confined to the active space:
@@ -36,10 +36,10 @@ The zeroth order Hamiltonian then becomes
 where $\ket{\Psi^{(k)'}_l}$ corresponds to the normalized $\ket{\Psi^{(k)}_l}$.
 
 The bottleneck in SC-NEVPT2 is the evaluation of the energies of the perturber functions, 
-where up to the 4RDM appears. This 4RDM is subsequently contracted with 
+where up to the 4-RDM appears. This 4-RDM is subsequently contracted with 
 two electron integrals in the active space to form auxiliary matrices.\cite{ angeli_n-electron_2002} 
-Computing the 4RDM requires $O(k^8M^2+k^5M^3)$ cost, much higher than that of a standard DMRG energy optimization.
-To minimize the cost, it is generally necessary to evaluate the 4RDM using a lower bond dimension than is used in the DMRG energy optimization of $\ket{\Psi^{(0)}}$.
+Computing the 4-RDM requires $O(k^8M^2+k^5M^3)$ cost, much higher than that of a standard DMRG energy optimization.
+To minimize the cost, it is generally necessary to evaluate the 4-RDM using a lower bond dimension than is used in the DMRG energy optimization of $\ket{\Psi^{(0)}}$.
 To obtain an MPS approximation of lower bond dimension for the reference, 
 we  ``compress'' the converged reference MPS of a larger bond dimension.
  This is done in practice by carrying out a ``reverse schedule'' set of sweeps
